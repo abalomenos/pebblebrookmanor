@@ -1,7 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-  var Example = sequelize.define("Example", {
-    text: DataTypes.STRING,
-    description: DataTypes.TEXT
+  var Event = sequelize.define("Event", {
+    name: DataTypes.STRING,
+    description: DataTypes.TEXT,
+    size: DataTypes.INTEGER
   });
-  return Example;
+  return Event;
 };

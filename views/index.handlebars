@@ -3,23 +3,38 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
+        <h2>Event Guru!</h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="event-name">Event Name</label>
+            <input type="text" id="event-name" class="form-control" aria-describedby="event-name" placeholder="Enter Event Name">
           </div>
           <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+            <label for="event-description">Event Description</label>
+            <textarea class="form-control" id="event-description" aria-describedby="event-description" placeholder="Enter Event Description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="event-size">Event Size</label>
+            <input type="text" class="form-control" id="event-size" aria-describedby="event-size" placeholder="Enter Event Size">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
+        
+        <h3>Events:</h3>
+        <ul id="event-list" class="list-group">
+          {{#each events}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="event/{{this.id}}">{{this.name}}</a>
+            <button class="btn btn-danger float-right delete">ｘ</button>
+          </li>
+          {{/each}}
+        </ul>
+
+        <h3>Employees:</h3>
+        <ul id="employee-list" class="list-group">
+          {{#each Employees}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="employee/{{this.id}}">{{this.name}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
