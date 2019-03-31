@@ -15,10 +15,60 @@ module.exports = function(app) {
     });
   });
 
+  // Update an Event by id
+  app.put("/api/events/", function(req, res) {
+    db.Event.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbEvent) {
+      res.json(dbEvent);
+    });
+  });
+
   // Delete an Event by id
   app.delete("/api/events/:id", function(req, res) {
-    db.Event.destroy({ where: { id: req.params.id } }).then(function(dbEvent) {
+    db.Event.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbEvent) {
       res.json(dbEvent);
+    });
+  });
+
+  // Get all Employees
+  app.get("/api/employees", function(req, res) {
+    db.Employee.findAll({}).then(function(dbEmployees) {
+      res.json(dbEmployees);
+    });
+  });
+
+  // Create a new Employee
+  app.post("/api/employees", function(req, res) {
+    db.Employee.create(req.body).then(function(dbEmployee) {
+      res.json(dbEmployee);
+    });
+  });
+
+  // Update an Employee by id
+  app.put("/api/employees", function(req, res) {
+    db.Employee.update(req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function(dbEmployee) {
+      res.json(dbEmployee);
+    });
+  });
+  // Delete an Employee by id
+  app.delete("/api/employees/:id", function(req, res) {
+    db.Employee.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbEmployee) {
+      res.json(dbEmployee);
     });
   });
 };
