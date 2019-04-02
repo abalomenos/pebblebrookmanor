@@ -15,27 +15,42 @@
           </div>
           <div class="form-group">
             <label for="event-size">Event Size</label>
-            <input type="text" class="form-control" id="event-size" aria-describedby="event-size" placeholder="Enter Event Size">
+            <input type="text" class="form-control" id="event-size" aria-describedby="event-size" placeholder="How many people will be attending?">
           </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+          <button id="submit-event" class="btn btn-primary float-right">Submit</button>
         </form>
         
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="employee-name">Employee Name</label>
+            <input type="text" id="employee-name" class="form-control" aria-describedby="employee-name" placeholder="Enter Employee Name">
+          </div>
+          <div class="form-group">
+            <label for="employee-wage">Employee Wage</label>
+            <input type="text" class="form-control" id="employee-wage" aria-describedby="employee-wage" placeholder="Dollar amount per hour">
+          </div>
+          <div class="form-group">
+            <label for="employee-image">Employee Image</label>
+            <input type="text" class="form-control" id="employee-image" aria-describedby="employee-image" placeholder="Enter url path to image">
+          </div>
+          <button id="submit-employee" class="btn btn-primary float-right">Submit</button>
+        </form>
         <h3>Events:</h3>
         <ul id="event-list" class="list-group">
           {{#each events}}
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="event/{{this.id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <button class="btn btn-danger float-right delete">Delete Event</button>
           </li>
           {{/each}}
         </ul>
 
         <h3>Employees:</h3>
         <ul id="employee-list" class="list-group">
-          {{#each Employees}}
+          {{#each employees}}
           <li data-id="{{this.id}}" class="list-group-item">
             <a href="employee/{{this.id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <button class="btn btn-danger float-right delete">Delete Employee</button>
           </li>
           {{/each}}
         </ul>
