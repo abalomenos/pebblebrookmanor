@@ -1,10 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
-    var Employee = sequelize.define("Employee", {
+  var Employee = sequelize.define(
+    "Employee",
+    {
       name: DataTypes.STRING,
       wage: DataTypes.INTEGER,
       image: DataTypes.STRING
-    });
-    return Employee;
-  };
-  
-  
+    },
+    {
+      timestamps: false
+    }
+  );
+  return Employee;
+};
