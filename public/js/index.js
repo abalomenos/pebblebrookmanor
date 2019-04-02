@@ -2,8 +2,13 @@
 var $eventName = $("#event-name");
 var $eventDescription = $("#event-description");
 var $eventSize = $("#event-size");
-var $submitBtn = $("#submit");
+var $submitEvent = $("#submit-event");
 var $eventList = $("#event-list");
+var $employeeName = $("employee-name");
+var $employeeWage = $("employee-wage");
+var $employeeImage = $("employee-image");
+var $submitEmployee = $("submit-employee");
+var $employeeList = $("employee-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -28,10 +33,46 @@ var API = {
       url: "api/events/" + id,
       type: "DELETE"
     });
+  },
+  updateEvent: function() {
+    return $.ajax({
+      url: "api/events/",
+      type: "PUT"
+    });
+  },
+  saveEmployee: function(employee) {
+    console.log("index.js employee" + employee);
+
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/employees",
+      data: JSON.stringify(employee)
+    });
+  },
+  getEmployees: function() {
+    return $.ajax({
+      url: "api/employees",
+      type: "GET"
+    });
+  },
+  deleteEmployee: function(id) {
+    return $.ajax({
+      url: "api/employees/" + id,
+      type: "DELETE"
+    });
+  },
+  updateEmployee: function() {
+    return $.ajax({
+      url: "api/employees/",
+      type: "PUT"
+    });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
+// Gets new event from the db and repopulates the list
 var refreshEvents = function() {
   API.getEvents().then(function(data) {
     var $events = data.map(function(event) {
@@ -48,7 +89,7 @@ var refreshEvents = function() {
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+        .text("Delete Event");
 
       $li.append($button);
 
@@ -60,9 +101,9 @@ var refreshEvents = function() {
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+// addEvent is called whenever a new event is created
+// Save the new event to the db and refresh the list
+var addEvent = function(event) {
   event.preventDefault();
 
   var event = {
@@ -72,9 +113,11 @@ var handleFormSubmit = function(event) {
   };
 
   if (!(event.name && event.description && event.size)) {
-    alert("You must enter an event name, description and size!");
+    alert("Please enter an Event Name, Description and Size!");
     return;
   }
+
+  console.log(event);
 
   API.saveEvent(event).then(function() {
     refreshEvents();
@@ -85,9 +128,7 @@ var handleFormSubmit = function(event) {
   $eventSize.val("");
 };
 
-// handleDeleteBtnClick is called when an event's delete button is clicked
-// Remove the event from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var deleteEvent = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
@@ -97,6 +138,76 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+// Gets new employee from the db and repopulates the list
+var refreshEmployees = function() {
+  API.getEmployees().then(function(data) {
+    var $employees = data.map(function(employee) {
+      var $a = $("<a>")
+        .text(employee.name)
+        .attr("href", "/employee/" + employee.id);
+
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": employee.id
+        })
+        .append($a);
+
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("Delete Employee");
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    employeeList.empty();
+    employeeList.append($employees);
+  });
+};
+
+// handleFormSubmit is called whenever we submit a new example
+// Save the new example to the db and refresh the list
+var addEmployee = function(event) {
+  event.preventDefault();
+
+  var employee = {
+    name: $employeeName.val().trim(),
+    wage: $employeeWage.val().trim(),
+    image: $employeeImage.val().trim()
+  };
+
+  if (!(employee.name && employee.wage && employee.image)) {
+    alert("Please enter an Employee Name, Wage and Image!");
+    return;
+  }
+
+  console.log("Saving new employee " + employee);
+
+  API.saveEmployee(employee).then(function() {
+    refreshEmployees();
+  });
+
+  $employeeName.val("");
+  $employeeWage.val("");
+  $employeeImage.val("");
+};
+
+// removeEmployee is called when an employee's delete button is clicked
+// Remove the employee from the db and refresh the list
+var deleteEmployee = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deleteEmployee(idToDelete).then(function() {
+    refreshEmployees();
+  });
+};
+
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$eventList.on("click", ".delete", handleDeleteBtnClick);
+$submitEvent.on("click", addEvent);
+$submitEmployee.on("click", addEmployee);
+$eventList.on("click", ".delete", deleteEvent);
+$employeeList.on("click", ".delete", deleteEmployee);

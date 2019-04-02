@@ -2,9 +2,9 @@ module.exports = function(sequelize, DataTypes) {
   var Employee = sequelize.define(
     "Employee",
     {
-      employeeName: DataTypes.STRING,
-      employeeWage: DataTypes.INTEGER,
-      employeeImage: DataTypes.STRING
+      name: DataTypes.STRING,
+      wage: DataTypes.INTEGER,
+      image: DataTypes.STRING
     },
     {
       timestamps: false
