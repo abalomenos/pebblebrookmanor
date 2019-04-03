@@ -30,9 +30,10 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/employees", function(req, res) {
-    
-  // });
+  // Load Events page
+  app.get("/nologin", function(req, res) {
+    res.render("nologin", {});
+  });
 
   // Load Employee page and pass in an Employee by id
   app.get("/employee/:id", function(req, res) {

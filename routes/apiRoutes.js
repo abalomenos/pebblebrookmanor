@@ -52,7 +52,7 @@ module.exports = function(app) {
   });
 
   // Update an Employee by id
-  app.put("/api/employees", function(req, res) {
+  app.put("/api/employees/", function(req, res) {
     db.Employee.update(req.body, {
       where: {
         id: req.body.id

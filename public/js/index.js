@@ -4,11 +4,11 @@ var $eventDescription = $("#event-description");
 var $eventSize = $("#event-size");
 var $submitEvent = $("#submit-event");
 var $eventList = $("#event-list");
-var $employeeName = $("employee-name");
-var $employeeWage = $("employee-wage");
-var $employeeImage = $("employee-image");
-var $submitEmployee = $("submit-employee");
-var $employeeList = $("employee-list");
+var $employeeName = $("#employee-name");
+var $employeeWage = $("#employee-wage");
+var $employeeImage = $("#employee-image");
+var $submitEmployee = $("#submit-employee");
+var $employeeList = $("#employee-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
