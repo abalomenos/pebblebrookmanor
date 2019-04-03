@@ -30,10 +30,6 @@ module.exports = function(app) {
     });
   });
 
-  // app.get("/employees", function(req, res) {
-    
-  // });
-
   // Load Employee page and pass in an Employee by id
   app.get("/employee/:id", function(req, res) {
     // eslint-disable-next-line prettier/prettier
@@ -45,8 +41,8 @@ module.exports = function(app) {
   });
 
   // Render 404 page for any unmatched routes
-  // app.get("*", function(req, res) {
-  //   res.render("404");
-  //   console.log(req.path);
-  // });
+  app.get("*", function(req, res) {
+    res.render("404");
+    console.log(req.path);
+  });
 };
