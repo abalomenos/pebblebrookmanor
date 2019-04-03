@@ -34,7 +34,7 @@ module.exports = function(app) {
   app.get("/nologin", function(req, res) {
     res.render("nologin", {});
   });
-  
+
   // Load Employee page and pass in an Employee by id
   app.get("/employee/:id", function(req, res) {
     // eslint-disable-next-line prettier/prettier
