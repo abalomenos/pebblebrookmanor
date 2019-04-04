@@ -3,15 +3,15 @@ module.exports = function(sequelize, DataTypes) {
     "Event",
     {
       date: DataTypes.INTEGER,
-      room: DataTypes.STRING,
-      name: DataTypes.STRING,
-      email: DataTypes.STRING,
-      size: DataTypes.INTEGER,
+      customerName: DataTypes.STRING,
+      customerEmail: DataTypes.STRING,
       tables: DataTypes.STRING,
-      employees: DataTypes.STRING
+      employees: DataTypes.STRING,
+      roomName: DataTypes.STRING,
+      partySize: DataTypes.INTEGER
     },
     {
-      timestamps: false
+      timestamps: true
     }
   );
   return Event;

@@ -35,7 +35,6 @@ module.exports = function(app) {
   app.get("/temp", function(req, res) {
     db.Event.findAll({}).then(function(dbEvents) {
       db.Employee.findAll({}).then(function(dbEmployees) {
-        debugger
         res.render("temp", {
           events: dbEvents,
           employees: dbEmployees
