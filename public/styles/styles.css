@@ -78,3 +78,34 @@ footer hr {
 .active{
     z-index:99;
 }
+
+
+/* Draggable */
+
+.draggable {
+  touch-action: none;
+  user-select: none;
+
+  width: 75px;
+  height: 75px;
+  /* min-height: 6.5em; */
+  margin: 5px;
+  background-color: #29e;
+  color: white;
+  border-radius: 0.75em;
+  padding: 5px;
+  -webkit-transform: translate(0px, 0px);
+  transform: translate(0px, 0px);
+}
+
+.deleteTable {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.eventLayout {
+  background-color: #cccccc;
+  height: 500px;
+  width: 500px;
+}
