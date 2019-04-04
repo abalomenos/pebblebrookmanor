@@ -18,17 +18,34 @@
     <h2 class="center space">Reservation</h2>
 
     <div class="row">
-        <p>Hello World</p>
-        <div class="col-md-2">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae tempus orci, pharetra maximus leo. Duis nec lobortis mauris. Mauris at urna egestas, vehicula erat eu, tempor ante. Aliquam erat volutpat. Mauris sed velit quis turpis vehicula porta. Praesent blandit bibendum dignissim. 
-            </p>
-        </div>
-        <div class="col-md-2">
-            <p>
-                Aenean orci lacus, rutrum lacinia porta quis, posuere nec urna. Duis suscipit vehicula neque eget ultrices. Nunc velit quam, blandit quis dignissim vitae, rhoncus fermentum massa. Phasellus finibus risus massa, non finibus sapien convallis eget. Nunc mollis nisl ut libero placerat, vel finibus tortor pharetra.
-            </p>
-        </div>
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="customerName">Name</label>
+            <input type="text" id="customerName" class="form-control" aria-describedby="customerName" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="customerEmail">Email</label>
+            <input type="text" id="customerEmail" class="form-control" aria-describedby="customerEmail" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="roomName">Room</label>
+            <textarea class="form-control" id="roomName" aria-describedby="roomName" placeholder="Enter room name"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="partySize">Party Size</label>
+            <input type="text" class="form-control" id="partySize" aria-describedby="partySize" placeholder="How many people will be attending?">
+          </div>
+          <button id="submit-event" class="btn btn-primary float-right">Submit</button>
+        </form>
+        <h3>Events:</h3>
+        <ul id="event-list" class="list-group">
+          {{#each events}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <a href="event/{{this.id}}">{{this.name}}</a>
+            <button class="btn btn-danger float-right delete">Delete Event</button>
+          </li>
+          {{/each}}
+        </ul>
     </div>
 </div>
 
