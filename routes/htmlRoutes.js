@@ -23,12 +23,25 @@ module.exports = function(app) {
 
   // Reservation Page
   app.get("/reservation", function(req, res) {
-    res.render("reservation", {});
+    db.Event.findAll({}).then(function(dbEvents) {
+      res.render("reservation", {
+        events: dbEvents
+      });
+    });  
   });
 
   // admin Page
   app.get("/admin", function(req, res) {
-    res.render("admin", {});
+    db.Event.findAll({
+      where: {
+        eventDate: "04/04/2019"
+      }
+    }).then(function(dbEvents) {
+      console.log(dbEvents)
+      res.render("admin", {
+        events: dbEvents
+      });
+    });  
   });
 
   // Temp for now
@@ -43,10 +56,10 @@ module.exports = function(app) {
     });
   });
 
-  // Load Events page
-  app.get("/events", function(req, res) {
+  // Load Events for admin
+  app.get("/admin", function(req, res) {
     db.Event.findAll({}).then(function(dbEvents) {
-      res.render("events", {
+      res.render("admin", {
         events: dbEvents
       });
     });
@@ -73,6 +86,5 @@ module.exports = function(app) {
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
-    console.log(req.path);
   });
 };
