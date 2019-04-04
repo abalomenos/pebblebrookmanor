@@ -1,7 +1,6 @@
 .list-group-item {
   line-height: 2.5;
 }
-
     
 html {
 	position: relative;
@@ -11,8 +10,40 @@ html {
 body {
   line-height: 1.6;
   font-family: Arial, Helvetica, sans-serif;
-	margin-bottom: 120px; /* Margin based on Footer height */
+  
 }
+
+body:after{
+  content: "";
+  position: fixed;
+  top:0;
+  height: 100vh;
+  left:0;
+  right:0;
+  z-index: -1;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)) repeat, url("/images/background.jpg") no-repeat center center;
+  -o-background-size: cover;
+  -ms-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.mainContent {
+  display: block;
+  height: max-content;
+  min-height: calc(100vh - 258px); /* Minus Height of Navigation and Footer*/
+}
+
+.container {
+  display: block;
+  background-color: aliceblue;
+  position: relative;
+  top: 20%;
+  transform: perspective(1px) translateY(-20%);
+}
+
+
 
 .leftSection {
   text-align: center;
@@ -28,13 +59,14 @@ img {
 }
 
 .space {
-  margin: 20px;
+  padding: 20px;
 }
 .footer {
-  position: absolute;
-	bottom: 0;
-	width: 100%;
-	height: 120px;
+  display: block;
+  position: relative;
+  padding: 15px;
+  width: 100%;
+	height: 200px;
   font-size: 12px;
   background-color: #3d3d3d;
   color:#dddddd;
@@ -42,7 +74,7 @@ img {
 }
 ul, li {
   list-style-type: none;
-
+  margin: 0px;
 }
 
 

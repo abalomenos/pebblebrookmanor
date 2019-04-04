@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
-    <a class="navbar-brand" href="#">E4U</a>
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,85 +10,50 @@
             <a class="nav-item nav-link" href="/venti">Venti Room</a>
             <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
             <a class="nav-item nav-link active" href="/reservation">Reservation<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/admin">Management</a>
         </div>
     </div>
 </nav>
-<div class="container">
-
-    <h2 class="center space">Reservation</h2>
-
-    <div class="row">
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="date">Date</label>
-            <input type="text" id="datepicker" class="form-control">
-          </div>
-          <div class="form-group">
-            <label for="customerName">Name</label>
-            <input type="text" id="customerName" class="form-control" aria-describedby="customerName" placeholder="Enter your name">
-          </div>
-          <div class="form-group">
-            <label for="customerEmail">Email</label>
-            <input type="text" id="customerEmail" class="form-control" aria-describedby="customerEmail" placeholder="Enter your email">
-          </div>
-          <div class="form-group">
-            <label for="roomName">Room</label>
-            <select class="form-control" id="roomName" aria-describedby="roomName">
-              <option>Grande Room</option>
-              <option>Venti Room</option>
-              <option>Luxor Room</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="partySize">Party Size</label>
-            <input type="text" class="form-control" id="partySize" aria-describedby="partySize" placeholder="How many people will be attending?">
-          </div>
-          <button id="submit-event" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Events:</h3>
-        <ul id="event-list" class="list-group">
-          {{#each events}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="event/{{this.id}}">{{this.customerName}}</a>
-            <button class="btn btn-danger float-right delete">Delete Event</button>
-          </li>
-          {{/each}}
-        </ul>
+<div class="mainContent">
+    <div class="container">
+        <h2 class="center space">Reservation</h2>
+        <div class="row">
+            <form class="clearfix mb-4" action="POST">
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input type="text" id="datepicker" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="customerName">Name</label>
+                <input type="text" id="customerName" class="form-control" aria-describedby="customerName" placeholder="Enter your name">
+              </div>
+              <div class="form-group">
+                <label for="customerEmail">Email</label>
+                <input type="text" id="customerEmail" class="form-control" aria-describedby="customerEmail" placeholder="Enter your email">
+              </div>
+              <div class="form-group">
+                <label for="roomName">Room</label>
+                <select class="form-control" id="roomName" aria-describedby="roomName">
+                  <option>Grande Room</option>
+                  <option>Venti Room</option>
+                  <option>Luxor Room</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="partySize">Party Size</label>
+                <input type="text" class="form-control" id="partySize" aria-describedby="partySize" placeholder="How many people will be attending?">
+              </div>
+              <button id="submit-event" class="btn btn-primary float-right">Submit</button>
+            </form>
+            <h3>Events:</h3>
+            <ul id="event-list" class="list-group">
+              {{#each events}}
+              <li data-id="{{this.id}}" class="list-group-item">
+                <a href="event/{{this.id}}">{{this.customerName}}</a>
+                <button class="btn btn-danger float-right delete">Delete Event</button>
+              </li>
+              {{/each}}
+            </ul>
+        </div>
     </div>
 </div>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="team">
-        <hr>
-        <ul>
-            <li>
-                Follow Us:
-            </li>
-            <li class="socialIcons">
-                <a href="https://www.linkedin.com/school/uclaextension/" target="_blank" class="socialLinks">
-                    <img src="/images/linkedIn.png" width="50px" height="50px" alt="LinkedIn"/>
-                </a>
-            </li>
-            <li class="socialIcons">
-                <a href="https://twitter.com/uclaextension/media" target="_blank" class="socialLinks">
-                    <img src="/images/twitter.png" width="50px" height="50px" alt="Twitter"/>
-                </a>
-            </li>
-            <li class="socialIcons">
-                <a href="https://www.facebook.com/UCLAExtension/" target="_blank" class="socialLinks">
-                    <img src="/images/facebook.png" width="50px" height="50px" alt="Facebook"/>
-                </a>
-            </li>
-            <li>
-                Team:
-            </li>
-            <li>
-                <span class="text-muted"><a href="https://github.com/abalomenos" target="_blank">Argiris Balomenos</a></span>
-            </li>
-            <li>
-                <span class="text-muted"><a href="https://github.com/jacksona750" target="_blank">Annie Jackson</a></span>
-            </li>
-        </ul>
-    </div>
-</footer>
