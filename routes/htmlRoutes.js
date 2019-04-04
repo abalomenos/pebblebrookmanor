@@ -35,7 +35,8 @@ module.exports = function(app) {
   app.get("/temp", function(req, res) {
     db.Event.findAll({}).then(function(dbEvents) {
       db.Employee.findAll({}).then(function(dbEmployees) {
-        res.render("index", {
+        debugger
+        res.render("temp", {
           events: dbEvents,
           employees: dbEmployees
         });
@@ -59,8 +60,6 @@ module.exports = function(app) {
       });
     });
   });
-
-  
 
   // Load Employee page and pass in an Employee by id
   app.get("/employee/:id", function(req, res) {
