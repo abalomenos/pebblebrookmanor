@@ -8,6 +8,17 @@ module.exports = function(app) {
     });
   });
 
+  // // Get events relative to specific date
+  // app.get("/api/events", function(req, res) {
+  //   db.Event.findAll({
+  //     where: {
+  //       date: req.body.date
+  //     }
+  //   }).then(function(dbevents) {
+  //     res.json(dbevents);
+  //   });
+  // });
+
   // Create a new Event
   app.post("/api/events", function(req, res) {
     db.Event.create(req.body).then(function(dbEvent) {
