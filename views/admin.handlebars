@@ -24,7 +24,16 @@
           <h2>Select Event</h2>
           <p>Date: <input type="text" id="datepicker"></p>
           <button id="searchEvent">Search</button>
-          <div class="events"></div>
+          <div class="events">
+            <ul id="event-list" class="list-group">
+              {{#each events}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                  <a href="event/{{this.id}}">{{this.roomName}}</a>
+                  <button class="btn btn-danger float-right delete">Delete Event</button>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
         </div>
         <div class="eventActions">
           <button id="addTable">Add Table</button>

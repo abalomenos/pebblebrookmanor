@@ -132,7 +132,7 @@ $('#saveEvent').click(function() {
 // ************** Event Tables End **************
 
 $('#searchEvent').click(function() {
-  var date = moment(new Date($('#datepicker').val())).format('YYYY-MM-DD')
+  var date = moment(new Date($('#datepicker').val())).format('MM/DD/YYYY')
 
   console.log(date);
 });
@@ -150,10 +150,12 @@ $( function() {
 // Get references to page elements
 var $submitEvent = $("#submit-event");
 var $eventList = $("#event-list");
+var $eventDate = $("#datepicker");
 var $customerName = $("#customerName");
 var $customerEmail = $("#customerEmail");
 var $roomName = $("#roomName");
 var $partySize = $("#partySize");
+var $searchEvent = $("#searchevent");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -222,14 +224,15 @@ var addEvent = function(event) {
   event.preventDefault();
 
   var event = {
+    eventDate: $eventDate.val().trim(),
     customerName: $customerName.val().trim(),
     customerEmail: $customerEmail.val().trim(),
     roomName: $roomName.val().trim(),
     partySize: $partySize.val().trim()
   };
 
-  if (!(event.customerName && event.customerEmail && event.roomName && event.partySize)) {
-    alert("Please enter an Event Name, Description and Size!");
+  if (!(event.eventDate && event.customerName && event.customerEmail && event.roomName && event.partySize)) {
+    alert("Please make sure to fill in all the form fields");
     return;
   }
 
@@ -239,10 +242,20 @@ var addEvent = function(event) {
     refreshEvents();
   });
 
+  $eventDate.val("");
   $customerName.val("");
   $customerEmail.val("");
   $roomName.val("");
   $partySize.val("");
+};
+
+var getEventByDate = function() {
+  var date = $eventDate.val();
+  console.log(date)
+
+  API.getEvents(date).then(function(){
+    refreshEvents();
+  });
 };
 
 var deleteEvent = function() {
@@ -258,6 +271,7 @@ var deleteEvent = function() {
 // Add event listeners to the submit and delete buttons
 $submitEvent.on("click", addEvent);
 $eventList.on("click", ".delete", deleteEvent);
+$searchEvent.on("click", getEventByDate);
 
 
 

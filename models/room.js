@@ -1,14 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-  var Employee = sequelize.define(
-    "Employee",
+  var Room = sequelize.define(
+    "Room",
     {
-    name: DataTypes.STRING,
-    wage: DataTypes.INTEGER,
-    image: DataTypes.STRING
+      name: DataTypes.STRING,
+      capacity: DataTypes.INTEGER
     },
-    {
-    timestamps: false
-    }
-);
-return Employee;
+  );
+  return Room;
 };
