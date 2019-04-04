@@ -109,3 +109,12 @@ footer hr {
   height: 500px;
   width: 500px;
 }
+
+.selectEvent {
+  background-color: #dddddd;
+  height: 400px;
+}
+
+.eventActions {
+  height: 400px;
+}

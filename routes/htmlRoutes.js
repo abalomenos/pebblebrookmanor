@@ -35,7 +35,7 @@ module.exports = function(app) {
   app.get("/temp", function(req, res) {
     db.Event.findAll({}).then(function(dbEvents) {
       db.Employee.findAll({}).then(function(dbEmployees) {
-        res.render("index", {
+        res.render("temp", {
           events: dbEvents,
           employees: dbEmployees
         });

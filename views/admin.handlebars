@@ -1,16 +1,17 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 eventLayout">
-               
-        </div>
-        <div class="col-md-2">
-            <button id="addTable">Add Table</button>
-            <button id="saveEvent">Save Event</button>
-        </div>
-        <div class="col-md-2">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae tempus orci, pharetra maximus leo. Duis nec lobortis mauris. Mauris at urna egestas, vehicula erat eu, tempor ante. Aliquam erat volutpat. Mauris sed velit quis turpis vehicula porta. Praesent blandit bibendum dignissim. 
-            </p>
-        </div>
+  <div class="row">
+    <div class="col-md-8 eventLayout"></div>
+    <div class="col-md-4">
+      <div class="selectEvent">
+        <h2>Select Event</h2>
+        <p>Date: <input type="text" id="datepicker"></p>
+        <button id="searchEvent">Search</button>
+        <div class="events"></div>
+      </div>
+      <div class="eventActions">
+        <button id="addTable">Add Table</button>
+        <button id="saveEvent">Save Event</button>
+      </div>
     </div>
+  </div>
 </div>
