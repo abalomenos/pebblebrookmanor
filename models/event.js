@@ -2,6 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var Event = sequelize.define(
     "Event",
     {
+      date: DataTypes.INTEGER,
       customerName: DataTypes.STRING,
       customerEmail: DataTypes.STRING,
       tables: DataTypes.STRING,

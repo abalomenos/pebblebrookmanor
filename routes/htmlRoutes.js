@@ -60,8 +60,6 @@ module.exports = function(app) {
     });
   });
 
-  
-
   // Load Employee page and pass in an Employee by id
   app.get("/employee/:id", function(req, res) {
     // eslint-disable-next-line prettier/prettier

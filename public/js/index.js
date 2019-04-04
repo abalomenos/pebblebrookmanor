@@ -4,6 +4,7 @@ var $eventDescription = $("#event-description");
 var $eventSize = $("#event-size");
 var $submitEvent = $("#submit-event");
 var $eventList = $("#event-list");
+
 var $employeeName = $("#employee-name");
 var $employeeWage = $("#employee-wage");
 var $employeeImage = $("#employee-image");
