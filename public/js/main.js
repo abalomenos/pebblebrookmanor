@@ -143,6 +143,10 @@ $( function() {
 
 
 
+
+// ************** Routing ********************
+
+
 // Get references to page elements
 var $submitEvent = $("#submit-event");
 var $eventList = $("#event-list");
@@ -254,3 +258,15 @@ var deleteEvent = function() {
 // Add event listeners to the submit and delete buttons
 $submitEvent.on("click", addEvent);
 $eventList.on("click", ".delete", deleteEvent);
+
+
+
+
+
+
+
+
+
+
+
+// ************** Routing ********************
