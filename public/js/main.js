@@ -16,21 +16,10 @@ interact('.draggable')
       }),
     ],
     // enable autoScroll
-    autoScroll: true,
+    autoScroll: false,
 
     // call this function on every dragmove event
     onmove: dragMoveListener
-    // call this function on every dragend event
-
-    // onend: function (event) {
-    //   var textEl = event.target.querySelector('p');
-
-    //   textEl && (textEl.textContent =
-    //     'moved a distance of '
-    //     + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-    //                  Math.pow(event.pageY - event.y0, 2) | 0))
-    //         .toFixed(2) + 'px');
-    // }
   });
 
   function dragMoveListener (event) {
@@ -49,13 +38,10 @@ interact('.draggable')
     target.setAttribute('data-y', y);
   }
 
-  // this is used later in the resizing and gesture demos
-  window.dragMoveListener = dragMoveListener;
-
 // ************** Draggable End **************
 
 
-
+// ************** Slide Show **************
 
 $(function () {
 
@@ -85,11 +71,62 @@ $(function () {
 
 });
 
-$('#addTable' ).click(function() {
-    var count = $('.draggable').length + 1;
-    $( '.container' ).append( $( '<div id="drag-' + count +'" class="draggable">Table</div>' ) );
+// ************** Slide Show End **************
+
+
+// ************** Event Tables **************
+
+
+// Add Table
+$('#addTable').click(function() {
+  var table = $('.draggable').length + 1;
+  $('.eventLayout').append( $( '<div id="drag-' + table +'" class="draggable">' + table + '<button id="deleteTable-' + table +'" class="deleteTable">X</button></div>' ) );
 });
 
-$('#saveEvent' ).click(function() {
-    
+// Delete Table
+$(document).on('click', '.deleteTable', function () {
+  
+  // Delete the Div
+  $(this).parent().closest('div').remove();
+  
+  $('.draggable').each(function(i) {
+    i++;
+    // Reset Table ID
+    $("#" + this.id).attr("id", "drag-" + i);
+
+    // Reset Table Data
+    $("#" + this.id).html(i + '<button id="deleteTable-' + i + '" class="deleteTable">X</button>');
+  });
 });
+
+// Save Event
+$('#saveEvent').click(function() {
+    
+  var tablesArray =[];
+  
+  $('.draggable').each(function() {
+    
+    tableID = this.id;
+    xCoords = $("#" + this.id).attr("data-x");
+    if (xCoords == null) {
+      xCoords = 0;
+    }
+    yCoords = $("#" + this.id).attr("data-y");
+    if (yCoords == null) {
+      yCoords = 0;
+    }
+    tablesArray.push(
+      {
+        "tableID" : tableID,
+        "xCoords" : xCoords,
+        "yCoords" : yCoords
+      }
+    )
+
+    // Need to save to DataBase
+    console.log(tablesArray);
+  });
+});
+
+
+// ************** Event Tables End **************
