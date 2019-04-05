@@ -30,19 +30,14 @@ module.exports = function(app) {
     });  
   });
 
-  // admin Page
-  app.get("/admin", function(req, res) {
-    db.Event.findAll({
-      where: {
-        eventDate: "04/04/2019"
-      }
-    }).then(function(dbEvents) {
-      console.log(dbEvents)
-      res.render("admin", {
-        events: dbEvents
-      });
-    });  
-  });
+  // // admin Page
+  // app.get("/admin", function(req, res) {
+  //   db.Event.findAll({}).then(function(dbEvents) {
+  //     res.render("admin", {
+  //       events: dbEvents
+  //     });
+  //   });  
+  // });
 
   // Temp for now
   app.get("/temp", function(req, res) {
@@ -58,12 +53,9 @@ module.exports = function(app) {
 
   // Load Events for admin
   app.get("/admin", function(req, res) {
-    db.Event.findAll({}).then(function(dbEvents) {
-      res.render("admin", {
-        events: dbEvents
-      });
-    });
+      res.render("admin", {});
   });
+
   // Load Events page and pass in an Event by id
   app.get("/event/:id", function(req, res) {
     db.Event.findOne({ where: { id: req.params.id } }).then(function(dbEvent) {
