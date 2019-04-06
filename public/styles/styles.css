@@ -39,8 +39,9 @@ body:after{
   display: block;
   background-color: aliceblue;
   position: relative;
-  top: 20%;
-  transform: perspective(1px) translateY(-20%);
+  margin: 100px auto;
+  /* top: 10%;
+  transform: perspective(1px) translateY(-10%); */
 }
 
 
@@ -138,7 +139,7 @@ footer hr {
 
 .eventLayout {
   background-color: #cccccc;
-  height: 500px;
+  height: 400px;
   width: 500px;
 }
 
@@ -148,5 +149,5 @@ footer hr {
 }
 
 .eventActions {
-  height: 400px;
+  /* height: 400px; */
 }
