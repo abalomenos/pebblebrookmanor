@@ -1,31 +1,38 @@
-<div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-      <div class="card mt-4">
-        <div class="card-body">
-          <h3 class="card-title" id={{event.id}}>Event {{event.id}}</h3>
-          <p>
-            <strong>Date</strong>: {{event.eventDate}}</p>
-          <p>
-            <strong>Room Name</strong>: {{event.roomName}}</p>
-          <p>
-            <strong>Customer Name</strong>: {{event.customerName}}</p>
-          <p>
-            <strong>Customer Email</strong>: {{event.customerEmail}}</p>
-          <p>
-            <strong>Event Size</strong>: {{event.partySize}}</p>
-
-          <h5>Employees:</h5>
-          <ul id="employee-list" class="list-group">
-            {{#each employees}}
-            <li data-id="{{this.id}}" class="list-group-item">
-              <a href="employee/{{this.id}}">{{this.name}}</a>
-              <button class="btn btn-danger float-right delete">x</button>
-            </li>
-            {{/each}}
-          </ul>
-          <a href="/admin">← Return to Admin</a>
-          <button type="button" class="btn btn-success" id="select-event">Select</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/grande">Grande Room</a>
+            <a class="nav-item nav-link" href="/venti">Venti Room</a>
+            <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
+            <a class="nav-item nav-link" href="/reservation">Reservation</a>
+            <a class="nav-item nav-link active" href="/admin">Management<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+</nav>
+<div class="mainContent">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <div class="card mt-4">
+          <div class="card-body">
+            <h3 class="card-title" id={{event.id}}>Event {{event.id}}</h3>
+            <p>
+              <strong>Date</strong>: {{event.eventDate}}</p>
+            <p>
+              <strong>Room Name</strong>: {{event.roomName}}</p>
+            <p>
+              <strong>Customer Name</strong>: {{event.customerName}}</p>
+            <p>
+              <strong>Customer Email</strong>: {{event.customerEmail}}</p>
+            <p>
+              <strong>Event Size</strong>: {{event.partySize}}</p>
+              <a href="/events">← Go Back</a>
+          </div>
         </div>
       </div>
     </div>

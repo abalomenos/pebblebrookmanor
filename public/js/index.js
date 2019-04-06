@@ -1,15 +1,33 @@
-// Get references to page elements
-var $eventName = $("#event-name");
-var $eventDescription = $("#event-description");
-var $eventSize = $("#event-size");
-var $submitEvent = $("#submit-event");
+
+// ********** Get References To Page Elements **********
+
+// All Events
 var $eventList = $("#event-list");
 
-var $employeeName = $("#employee-name");
-var $employeeWage = $("#employee-wage");
-var $employeeImage = $("#employee-image");
-var $submitEmployee = $("#submit-employee");
+// Reservation Page
+var $eventDate = $("#datepicker");
+var $customerName = $("#customerName");
+var $customerEmail = $("#customerEmail");
+var $roomName = $("#roomName");
+var $partySize = $("#partySize");
+var $submitEvent = $("#submit-event");
+
+// Add Employee Page
+var $employeeName = $("#employeeName");
+var $employeeWage = $("#employeeWage");
+var $employeeImage = $("#employeeImage");
+var $submitEmployee = $("#addEmployee");
+
+// Admin Page
+var $searchEvent = $("#searchEvent");
+
+// All Employees Page
 var $employeeList = $("#employee-list");
+
+
+
+// ********** Get References To Page Elements End **********
+
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -78,7 +96,7 @@ var refreshEvents = function() {
   API.getEvents().then(function(data) {
     var $events = data.map(function(event) {
       var $a = $("<a>")
-        .text(event.name)
+        .text(event.customerName)
         .attr("href", "/event/" + event.id);
 
       var $li = $("<li>")
@@ -90,7 +108,7 @@ var refreshEvents = function() {
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("Delete Event");
+        .text("x");
 
       $li.append($button);
 
@@ -108,13 +126,27 @@ var addEvent = function(event) {
   event.preventDefault();
 
   var event = {
-    name: $eventName.val().trim(),
-    description: $eventDescription.val().trim(),
-    size: $eventSize.val().trim()
+    eventDate: $eventDate
+      .val()
+      .trim()
+      .split("/")
+      .join("-"),
+    customerName: $customerName.val().trim(),
+    customerEmail: $customerEmail.val().trim(),
+    roomName: $roomName.val().trim(),
+    partySize: $partySize.val().trim()
   };
 
-  if (!(event.name && event.description && event.size)) {
-    alert("Please enter an Event Name, Description and Size!");
+  if (
+    !(
+      event.eventDate &&
+      event.customerName &&
+      event.customerEmail &&
+      event.roomName &&
+      event.partySize
+    )
+  ) {
+    alert("Please make sure to fill in all the form fields");
     return;
   }
 
@@ -124,9 +156,11 @@ var addEvent = function(event) {
     refreshEvents();
   });
 
-  $eventName.val("");
-  $eventDescription.val("");
-  $eventSize.val("");
+  $eventDate.val("");
+  $customerName.val("");
+  $customerEmail.val("");
+  $roomName.val("");
+  $partySize.val("");
 };
 
 var deleteEvent = function() {
@@ -168,8 +202,8 @@ var refreshEmployees = function() {
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
+// addEmployee is called whenever we submit a new employee
+// Save the new employee to the db and refresh the list
 var addEmployee = function(event) {
   event.preventDefault();
 
@@ -212,3 +246,6 @@ $submitEvent.on("click", addEvent);
 $submitEmployee.on("click", addEmployee);
 $eventList.on("click", ".delete", deleteEvent);
 $employeeList.on("click", ".delete", deleteEmployee);
+
+$searchEvent.on("click", refreshEvents);
+

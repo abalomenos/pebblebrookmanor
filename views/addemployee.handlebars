@@ -15,25 +15,26 @@
     </div>
 </nav>
 <div class="mainContent">
-    <div class="container">
-        <div class="row">
-            <div class="col-8 offset-2">
-                <div class="card mt-4">
-                    <div class="card-body">
-                      <h5 class="card-title">EMPLOYEE</h5>
-                      <p>
-                        <strong>ID</strong>: {{employee.id}}</p>
-                      <p>
-                      <p>
-                        <strong>Name</strong>: {{employee.name}}</p>
-                      <p>
-                        <strong>Wage:</strong> ${{employee.wage}}/hr</p>
-                      <p>
-                        <strong>Image:</strong> <img src={{employee.image}} /></p>  
-                        <a href="/employees">← Go Back</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="employeeName">Employee Name</label>
+            <input type="text" id="employeeName" class="form-control" aria-describedby="employeeName" placeholder="Enter Employee Name">
+          </div>
+          <div class="form-group">
+            <label for="employeeWage">Employee Wage</label>
+            <input type="text" class="form-control" id="employeeWage" aria-describedby="employeeWage" placeholder="Dollar amount per hour">
+          </div>
+          <div class="form-group">
+            <label for="employeeImage">Employee Image</label>
+            <input type="text" class="form-control" id="employeeImage" aria-describedby="employeeImage" placeholder="Enter url path to image">
+          </div>
+          <button id="addEmployee" class="btn btn-primary float-right">Submit</button>
+        </form>
+        <a href="/admin">Admin</a>
+      </div>
     </div>
+  </div>
 </div>

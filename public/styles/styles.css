@@ -32,15 +32,16 @@ body:after{
 .mainContent {
   display: block;
   height: max-content;
-  min-height: calc(100vh - 258px); /* Minus Height of Navigation and Footer*/
+  min-height: calc(100vh - 362px); /* Minus Height of Navigation, Footer and Margins */
 }
 
 .container {
   display: block;
   background-color: aliceblue;
   position: relative;
-  top: 20%;
-  transform: perspective(1px) translateY(-20%);
+  margin: 100px auto;
+  /* top: 10%;
+  transform: perspective(1px) translateY(-10%); */
 }
 
 
@@ -138,7 +139,7 @@ footer hr {
 
 .eventLayout {
   background-color: #cccccc;
-  height: 500px;
+  height: 400px;
   width: 500px;
 }
 
@@ -148,5 +149,5 @@ footer hr {
 }
 
 .eventActions {
-  height: 400px;
+  /* height: 400px; */
 }
