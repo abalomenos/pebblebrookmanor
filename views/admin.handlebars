@@ -23,12 +23,11 @@
         <div class="selectEvent">
           <h2>Select Event</h2>
           <p>Date: <input type="text" id="datepicker"></p>
-          <button id="searchEvent">Search</button>
-          <div class="events">
+          <button id="searchEvent">Search</button>      
             <ul id="event-list" class="list-group">
               {{#each events}}
                 <li data-id="{{this.id}}" class="list-group-item">
-                  <a href="event/{{this.id}}">{{this.roomName}}</a>
+                  <a href="event/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content="Event info here">{{this.roomName}}</a>
                   <button class="btn btn-danger float-right delete">Delete Event</button>
                 </li>
               {{/each}}

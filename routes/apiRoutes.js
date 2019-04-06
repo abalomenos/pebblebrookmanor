@@ -3,7 +3,6 @@ var db = require("../models");
 module.exports = function(app) {
   // Get events relative to specific date
   app.get("/api/events/:date", function(req, res) {
-    console.log("hi")
     db.Event.findAll({
       where: {
         eventDate: req.params.date

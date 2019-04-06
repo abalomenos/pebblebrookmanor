@@ -101,7 +101,8 @@ $(document).on("click", ".deleteTable", function() {
   });
 });
 
-// Save Event
+// ************ Save Event *****************
+
 $("#saveEvent").click(function() {
   var tablesArray = [];
 
@@ -123,11 +124,16 @@ $("#saveEvent").click(function() {
 
     // Need to save to DataBase
     console.log(tablesArray);
+    API.updateEvent().then(function(data) {
+
+    })
   });
 });
 
 // ************** Event Tables End **************
 
+
+// ************* Get Event by Date **************
 $("#searchEvent").click(function() {
   var date = moment(new Date($("#datepicker").val())).format("MM-DD-YYYY");
   $.ajax({
@@ -136,16 +142,28 @@ $("#searchEvent").click(function() {
   }).then(function(data) {
     console.log(data);
     var $events = data.map(function(data) {
-      var $li = $("<li>")
+      var $a = $("<a>")
         .text(data.roomName)
         .attr("href", "/event/" + data.id)
+        .addClass("reservation")
+        // .attr("href", "#")
+        // .attr("id", data.id)
+        // .attr("data-toggle", "popover")
+        // .attr("data-trigger", "hover")
+        // .attr("data-placement", "right")
+        // .attr("title", data.roomName)
+        // .attr("data-content", "Event info here")
+
+      var $li = $("<li>")
         .attr({
-          class: "list-group-item"
-        });
+          class: "list-group-item list-group-item-action",
+          "data-id": data.id
+        })
+        .append($a);
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("Delete Event");
+        .text("x");
 
       $li.append($button);
 
@@ -156,9 +174,51 @@ $("#searchEvent").click(function() {
   });
 });
 
+
+// ************* Get employees ***********
+$(".reservation").on("click", function() {
+  $.ajax({
+      url: "api/employees",
+      type: "GET"
+    }).then(function(data) {
+      console.log(data)
+      var $employees = data.map(function(data) {
+        var $a = $("<a>")
+          .text(data.employeeName)
+          .attr("href", "/employee/" + data.id)
+  
+        var $li = $("<li>")
+          .attr({
+            class: "list-group-item list-group-item-action",
+            "data-id": data.id
+          })
+          .append($a);
+  
+        var $button = $("<button>")
+          .addClass("btn btn-danger float-right delete")
+          .text("x");
+  
+        $li.append($button);
+  
+        return $li;
+      });
+  
+      $employeeList.append($employees);
+    });
+  }); 
+
+
+
+
+
+// Enable popovers
+$('[data-toggle="popover"]').popover();
+
+// Enable datepicker
 $(function() {
   $("#datepicker").datepicker();
 });
+
 
 // ************** Routing ********************
 
@@ -170,7 +230,7 @@ var $customerName = $("#customerName");
 var $customerEmail = $("#customerEmail");
 var $roomName = $("#roomName");
 var $partySize = $("#partySize");
-var $searchEvent = $("#searchevent");
+var $searchEvent = $("#searchEvent");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -221,7 +281,7 @@ var refreshEvents = function() {
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("Delete Event");
+        .text("x");
 
       $li.append($button);
 
@@ -276,15 +336,6 @@ var addEvent = function(event) {
   $partySize.val("");
 };
 
-var getEventByDate = function() {
-  var date = $eventDate.val();
-  console.log(date);
-
-  API.getEvents(date).then(function() {
-    refreshEvents();
-  });
-};
-
 var deleteEvent = function() {
   var idToDelete = $(this)
     .parent()
@@ -298,6 +349,5 @@ var deleteEvent = function() {
 // Add event listeners to the submit and delete buttons
 $submitEvent.on("click", addEvent);
 $eventList.on("click", ".delete", deleteEvent);
-// $searchEvent.on("click", getEventByDate);
 
 // ************** Routing ********************
