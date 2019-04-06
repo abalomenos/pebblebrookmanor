@@ -16,24 +16,19 @@
 </nav>
 <div class="mainContent">
     <div class="container">
+        <h2 class="center space">All Events</h2>
         <div class="row">
-            <div class="col-8 offset-2">
-                <div class="card mt-4">
-                    <div class="card-body">
-                      <h5 class="card-title">EMPLOYEE</h5>
-                      <p>
-                        <strong>ID</strong>: {{employee.id}}</p>
-                      <p>
-                      <p>
-                        <strong>Name</strong>: {{employee.name}}</p>
-                      <p>
-                        <strong>Wage:</strong> ${{employee.wage}}/hr</p>
-                      <p>
-                        <strong>Image:</strong> <img src={{employee.image}} /></p>  
-                        <a href="/employees">← Go Back</a>
-                    </div>
-                </div>
+            <div class="col-md-12">
+                <ul id="event-list" class="list-group">
+                    {{#each events}}
+                    <li data-id="{{this.id}}" class="list-group-item">
+                        <a href="events/{{this.id}}">{{this.customerName}}</a>
+                        <button class="btn btn-danger float-right delete">Delete Event</button>
+                    </li>
+                    {{/each}}
+                </ul>
             </div>
+            <a href="/admin">Admin</a>
         </div>
     </div>
 </div>

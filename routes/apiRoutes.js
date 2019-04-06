@@ -19,7 +19,6 @@ module.exports = function(app) {
   //   });
   // });
 
-  
   // Create a new Event
   app.post("/api/events", function(req, res) {
     db.Event.create(req.body).then(function(dbEvent) {
@@ -73,6 +72,7 @@ module.exports = function(app) {
       res.json(dbEmployee);
     });
   });
+
   // Delete an Employee by id
   app.delete("/api/employees/:id", function(req, res) {
     db.Employee.destroy({
