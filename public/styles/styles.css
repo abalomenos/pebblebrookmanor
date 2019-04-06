@@ -29,6 +29,9 @@ body:after{
   background-size: cover;
 }
 
+h6 {
+  color: #c58d42;
+}
 .mainContent {
   display: block;
   height: max-content;
@@ -40,6 +43,7 @@ body:after{
   background-color: aliceblue;
   position: relative;
   margin: 100px auto;
+  padding: 50px;
   /* top: 10%;
   transform: perspective(1px) translateY(-10%); */
 }

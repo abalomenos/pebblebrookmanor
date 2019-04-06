@@ -6,19 +6,19 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  // Grande Room Page
-  app.get("/grande", function(req, res) {
-    res.render("grande");
+  // Brandviw Ballroom Page
+  app.get("/brandview", function(req, res) {
+    res.render("brandview");
   });
 
-  // Venti Room Page
-  app.get("/venti", function(req, res) {
-    res.render("venti");
+  // Glenoaks Ballroom Page
+  app.get("/glenoaks", function(req, res) {
+    res.render("glenoaks");
   });
 
-  // Luxor Room Page
-  app.get("/luxor", function(req, res) {
-    res.render("luxor");
+  // Le Foyer Ballroom Page
+  app.get("/lefoyer", function(req, res) {
+    res.render("lefoyer");
   });
 
   // Reservation Page
