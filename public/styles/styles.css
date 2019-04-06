@@ -32,7 +32,7 @@ body:after{
 .mainContent {
   display: block;
   height: max-content;
-  min-height: calc(100vh - 258px); /* Minus Height of Navigation and Footer*/
+  min-height: calc(100vh - 362px); /* Minus Height of Navigation, Footer and Margins */
 }
 
 .container {
