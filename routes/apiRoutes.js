@@ -1,24 +1,25 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all Events
-  app.get("/api/events", function(req, res) {
-    db.Event.findAll({}).then(function(dbEvents) {
+  // Get events relative to specific date
+  app.get("/api/events/:date", function(req, res) {
+    db.Event.findAll({
+      where: {
+        eventDate: req.params.date
+      }
+    }).then(function(dbEvents) {
       res.json(dbEvents);
     });
   });
 
-  // // Get events relative to specific date
+  // // Get all Events
   // app.get("/api/events", function(req, res) {
-  //   db.Event.findAll({
-  //     where: {
-  //       date: req.body.date
-  //     }
-  //   }).then(function(dbevents) {
-  //     res.json(dbevents);
+  //   db.Event.findAll({}).then(function(dbEvents) {
+  //     res.json(dbEvents);
   //   });
   // });
 
+  
   // Create a new Event
   app.post("/api/events", function(req, res) {
     db.Event.create(req.body).then(function(dbEvent) {
