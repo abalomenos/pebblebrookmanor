@@ -123,8 +123,17 @@ $("#saveEvent").click(function() {
     });
 
     // Need to save to DataBase
-    console.log(tablesArray);
   });
+  console.log(tablesArray);
+      $.ajax({
+        url: "/api/events/",
+        type: "PUT",
+        data: {
+          tables: JSON.stringify(tablesArray),
+          id: window.location.pathname.split("/")[2]
+        }
+      }).then(function() {
+      })
 });
 
 // ************** Event Tables End **************
@@ -142,7 +151,7 @@ $("#searchEvent").click(function() {
     var $events = data.map(function(data) {
       var $a = $("<a>")
         .text(data.roomName)
-        .attr("href", "/event/" + data.id)
+        .attr("href", "/events/" + data.id)
         .addClass("reservation")
         // .attr("href", "#")
         // .attr("id", data.id)

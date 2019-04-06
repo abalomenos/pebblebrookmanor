@@ -27,8 +27,11 @@ module.exports = function(app) {
   });
 
   // Update an Event by id
-  app.put("/api/events/", function(req, res) {
-    db.Event.update(req.body, {
+  app.put("/api/events", function(req, res) {
+    console.log(req.body)
+    db.Event.update({
+      tables: req.body.tables
+    }, {
       where: {
         id: req.body.id
       }
