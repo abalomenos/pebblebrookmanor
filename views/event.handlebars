@@ -16,25 +16,27 @@
 </nav>
 <div class="mainContent">
   <div class="container">
+    <h2 class="center space">Management</h2>
     <div class="row">
-      <div class="col-8 offset-2">
+      <div class="col-md-8 eventLayout"></div>
+      <div class="col-md-4">
         <div class="card mt-4">
-          <div class="card-body">
-            <h3 class="card-title" id={{event.id}}>Event {{event.id}}</h3>
-            <p>
-              <strong>Date</strong>: {{event.eventDate}}</p>
-            <p>
-              <strong>Room Name</strong>: {{event.roomName}}</p>
-            <p>
-              <strong>Customer Name</strong>: {{event.customerName}}</p>
-            <p>
-              <strong>Customer Email</strong>: {{event.customerEmail}}</p>
-            <p>
-              <strong>Event Size</strong>: {{event.partySize}}</p>
-              <a href="/events">← Go Back</a>
-          </div>
+        <div class="card-body">
+          <h3 class="card-title" id={{event.id}}>{{event.roomName}}</h3>
+          <p>
+            <strong>Date</strong>: {{event.eventDate}}</p>
+          <p>
+            <strong>Customer Name</strong>: {{event.customerName}}</p>
+          <p>
+            <strong>Customer Email</strong>: {{event.customerEmail}}</p>
+          <p>
+            <strong>Event Size</strong>: {{event.partySize}}</p>
         </div>
       </div>
+       <div class="eventActions">
+          <button id="addTable">Add Table</button>
+          <button id="saveEvent">Save Event</button>
+        </div>
     </div>
   </div>
 </div>
