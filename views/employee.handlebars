@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/grande">Grande Room</a>
+            <a class="nav-item nav-link" href="/venti">Venti Room</a>
+            <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
+            <a class="nav-item nav-link" href="/reservation">Reservation</a>
+            <a class="nav-item nav-link active" href="/admin">Management<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+</nav>
+<div class="mainContent">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="card mt-4">
+                    <div class="card-body">
+                      <h5 class="card-title">EMPLOYEE</h5>
+                      <p>
+                        <strong>ID</strong>: {{employee.id}}</p>
+                      <p>
+                      <p>
+                        <strong>Name</strong>: {{employee.name}}</p>
+                      <p>
+                        <strong>Wage:</strong> ${{employee.wage}}/hr</p>
+                      <p>
+                        <strong>Image:</strong> <img src={{employee.image}} /></p>  
+                        <a href="/employees">← Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

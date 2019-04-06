@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/grande">Grande Room</a>
+            <a class="nav-item nav-link" href="/venti">Venti Room</a>
+            <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
+            <a class="nav-item nav-link" href="/reservation">Reservation</a>
+            <a class="nav-item nav-link active" href="/admin">Management<span class="sr-only">(current)</span></a>
+        </div>
+    </div>
+</nav>
+<div class="mainContent">
+  <div class="container">
+    <h2 class="center space">Management</h2>
+    <div class="row">
+      <div class="col-md-8 eventLayout"></div>
+      <div class="col-md-4">
+        <div class="selectEvent">
+          <h2>Select Event</h2>
+          <p>Date: <input type="text" id="datepicker"></p>
+          <button id="searchEvent">Search</button>      
+            <ul id="event-list" class="list-group">
+              {{#each events}}
+                <li data-id="{{this.id}}" class="list-group-item">
+                  <a href="event/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content="Event info here">{{this.roomName}}</a>
+                  <button class="btn btn-danger float-right delete">Delete Event</button>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+        <div class="eventActions">
+          <button id="addTable">Add Table</button>
+          <button id="saveEvent">Save Event</button>
+        </div>
+        </div>
+        <ul>
+          <li>
+            <a href="/addemployee">Add Employee</a>
+          </li>
+          <li>
+            <a href="/employees">All Employees</a>
+          </li>
+          <li>
+            <a href="/events">All Events</a>
+          </li>
+        </ul>
+      
+    </div>
+  </div>

@@ -1,9 +1,33 @@
-// Get references to page elements
-var $eventName = $("#event-name");
-var $eventDescription = $("#event-description");
-var $eventSize = $("#event-size");
-var $submitBtn = $("#submit");
+
+// ********** Get References To Page Elements **********
+
+// All Events
 var $eventList = $("#event-list");
+
+// Reservation Page
+var $eventDate = $("#datepicker");
+var $customerName = $("#customerName");
+var $customerEmail = $("#customerEmail");
+var $roomName = $("#roomName");
+var $partySize = $("#partySize");
+var $submitEvent = $("#submit-event");
+
+// Add Employee Page
+var $employeeName = $("#employeeName");
+var $employeeWage = $("#employeeWage");
+var $employeeImage = $("#employeeImage");
+var $submitEmployee = $("#addEmployee");
+
+// Admin Page
+var $searchEvent = $("#searchEvent");
+
+// All Employees Page
+var $employeeList = $("#employee-list");
+
+
+
+// ********** Get References To Page Elements End **********
+
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -28,15 +52,51 @@ var API = {
       url: "api/events/" + id,
       type: "DELETE"
     });
+  },
+  updateEvent: function() {
+    return $.ajax({
+      url: "api/events/",
+      type: "PUT"
+    });
+  },
+  saveEmployee: function(employee) {
+    console.log("index.js employee" + employee);
+
+    return $.ajax({
+      headers: {
+        "Content-Type": "application/json"
+      },
+      type: "POST",
+      url: "api/employees",
+      data: JSON.stringify(employee)
+    });
+  },
+  getEmployees: function() {
+    return $.ajax({
+      url: "api/employees",
+      type: "GET"
+    });
+  },
+  deleteEmployee: function(id) {
+    return $.ajax({
+      url: "api/employees/" + id,
+      type: "DELETE"
+    });
+  },
+  updateEmployee: function() {
+    return $.ajax({
+      url: "api/employees/",
+      type: "PUT"
+    });
   }
 };
 
-// refreshExamples gets new examples from the db and repopulates the list
+// Gets new event from the db and repopulates the list
 var refreshEvents = function() {
   API.getEvents().then(function(data) {
     var $events = data.map(function(event) {
       var $a = $("<a>")
-        .text(event.name)
+        .text(event.customerName)
         .attr("href", "/event/" + event.id);
 
       var $li = $("<li>")
@@ -48,7 +108,7 @@ var refreshEvents = function() {
 
       var $button = $("<button>")
         .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
+        .text("x");
 
       $li.append($button);
 
@@ -60,34 +120,50 @@ var refreshEvents = function() {
   });
 };
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
+// addEvent is called whenever a new event is created
+// Save the new event to the db and refresh the list
+var addEvent = function(event) {
   event.preventDefault();
 
   var event = {
-    name: $eventName.val().trim(),
-    description: $eventDescription.val().trim(),
-    size: $eventSize.val().trim()
+    eventDate: $eventDate
+      .val()
+      .trim()
+      .split("/")
+      .join("-"),
+    customerName: $customerName.val().trim(),
+    customerEmail: $customerEmail.val().trim(),
+    roomName: $roomName.val().trim(),
+    partySize: $partySize.val().trim()
   };
 
-  if (!(event.name && event.description && event.size)) {
-    alert("You must enter an event name, description and size!");
+  if (
+    !(
+      event.eventDate &&
+      event.customerName &&
+      event.customerEmail &&
+      event.roomName &&
+      event.partySize
+    )
+  ) {
+    alert("Please make sure to fill in all the form fields");
     return;
   }
+
+  console.log(event);
 
   API.saveEvent(event).then(function() {
     refreshEvents();
   });
 
-  $eventName.val("");
-  $eventDescription.val("");
-  $eventSize.val("");
+  $eventDate.val("");
+  $customerName.val("");
+  $customerEmail.val("");
+  $roomName.val("");
+  $partySize.val("");
 };
 
-// handleDeleteBtnClick is called when an event's delete button is clicked
-// Remove the event from the db and refresh the list
-var handleDeleteBtnClick = function() {
+var deleteEvent = function() {
   var idToDelete = $(this)
     .parent()
     .attr("data-id");
@@ -97,6 +173,79 @@ var handleDeleteBtnClick = function() {
   });
 };
 
+// Gets new employee from the db and repopulates the list
+var refreshEmployees = function() {
+  API.getEmployees().then(function(data) {
+    var $employees = data.map(function(employee) {
+      var $a = $("<a>")
+        .text(employee.name)
+        .attr("href", "/employee/" + employee.id);
+
+      var $li = $("<li>")
+        .attr({
+          class: "list-group-item",
+          "data-id": employee.id
+        })
+        .append($a);
+
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("Delete Employee");
+
+      $li.append($button);
+
+      return $li;
+    });
+
+    employeeList.empty();
+    employeeList.append($employees);
+  });
+};
+
+// addEmployee is called whenever we submit a new employee
+// Save the new employee to the db and refresh the list
+var addEmployee = function(event) {
+  event.preventDefault();
+
+  var employee = {
+    name: $employeeName.val().trim(),
+    wage: $employeeWage.val().trim(),
+    image: $employeeImage.val().trim()
+  };
+
+  if (!(employee.name && employee.wage && employee.image)) {
+    alert("Please enter an Employee Name, Wage and Image!");
+    return;
+  }
+
+  console.log("Saving new employee " + employee);
+
+  API.saveEmployee(employee).then(function() {
+    refreshEmployees();
+  });
+
+  $employeeName.val("");
+  $employeeWage.val("");
+  $employeeImage.val("");
+};
+
+// removeEmployee is called when an employee's delete button is clicked
+// Remove the employee from the db and refresh the list
+var deleteEmployee = function() {
+  var idToDelete = $(this)
+    .parent()
+    .attr("data-id");
+
+  API.deleteEmployee(idToDelete).then(function() {
+    refreshEmployees();
+  });
+};
+
 // Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$eventList.on("click", ".delete", handleDeleteBtnClick);
+$submitEvent.on("click", addEvent);
+$submitEmployee.on("click", addEmployee);
+$eventList.on("click", ".delete", deleteEvent);
+$employeeList.on("click", ".delete", deleteEmployee);
+
+$searchEvent.on("click", refreshEvents);
+

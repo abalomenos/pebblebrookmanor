@@ -1,48 +1,44 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Event Guru!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="event-name">Event Name</label>
-            <input type="text" id="event-name" class="form-control" aria-describedby="event-name" placeholder="Enter Event Name">
-          </div>
-          <div class="form-group">
-            <label for="event-description">Event Description</label>
-            <textarea class="form-control" id="event-description" aria-describedby="event-description" placeholder="Enter Event Description"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="event-size">Event Size</label>
-            <input type="text" class="form-control" id="event-size" aria-describedby="event-size" placeholder="Enter Event Size">
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        
-        <h3>Events:</h3>
-        <ul id="event-list" class="list-group">
-          {{#each events}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="event/{{this.id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-
-        <h3>Employees:</h3>
-        <ul id="employee-list" class="list-group">
-          {{#each Employees}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="employee/{{this.id}}">{{this.name}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/grande">Grande Room</a>
+            <a class="nav-item nav-link" href="/venti">Venti Room</a>
+            <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
+            <a class="nav-item nav-link" href="/reservation">Reservation</a>
+            <a class="nav-item nav-link" href="/admin">Management</a>
+        </div>
     </div>
-  </div>
+</nav>
+<div class="mainContent">
+    <div class="container">
+        <h2 class="center space">Pebblebrook Manor</h2>
+        <div class="row">
+            <div class="col-md-8 leftSection" id="exampleSlider">
+                <li>
+                    <img src="/images/image1.png" alt="" />
+                </li>
+                <li>
+                    <img src="/images/image2.png" alt="" />
+                </li>
+                <li>
+                    <img src="/images/image3.png" alt="" />
+                </li>
+            </div>
+            <div class="col-md-2">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae tempus orci, pharetra maximus leo. Duis nec lobortis mauris. Mauris at urna egestas, vehicula erat eu, tempor ante. Aliquam erat volutpat. Mauris sed velit quis turpis vehicula porta. Praesent blandit bibendum dignissim. 
+                </p>
+            </div>
+            <div class="col-md-2">
+                <p>
+                    Aenean orci lacus, rutrum lacinia porta quis, posuere nec urna. Duis suscipit vehicula neque eget ultrices. Nunc velit quam, blandit quis dignissim vitae, rhoncus fermentum massa. Phasellus finibus risus massa, non finibus sapien convallis eget. Nunc mollis nisl ut libero placerat, vel finibus tortor pharetra.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
