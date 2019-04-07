@@ -9,8 +9,7 @@ html {
 
 body {
   line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
-  
+  font-family: 'Roboto', sans-serif;  
 }
 
 body:after{
@@ -29,26 +28,44 @@ body:after{
   background-size: cover;
 }
 
-h6 {
+
+h1, h2, h3 {
+  font-family: 'Great Vibes', cursive;
+}
+
+h1 {
+  color: #996515;
+}
+
+h2, h3 {
   color: #c58d42;
 }
+
 .mainContent {
   display: block;
   height: max-content;
-  min-height: calc(100vh - 362px); /* Minus Height of Navigation, Footer and Margins */
+  min-height: calc(100vh - 311px); /* Minus Height of Navigation, Footer and Margins */
 }
 
 .container {
   display: block;
   background-color: aliceblue;
   position: relative;
-  margin: 100px auto;
+  margin: 50px auto;
   padding: 50px;
   /* top: 10%;
   transform: perspective(1px) translateY(-10%); */
 }
 
+.reservationCard {
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) repeat,url("/images/reservationCard2.png") no-repeat center center;
+  background-size: cover;
+}
 
+.adminCard {
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) repeat,url("/images/reservationCard.png") no-repeat center center;
+  background-size: cover;
+}
 
 .leftSection {
   text-align: center;
@@ -73,8 +90,8 @@ img {
   width: 100%;
 	height: 200px;
   font-size: 12px;
-  background-color: #3d3d3d;
-  color:#dddddd;
+  background-color: #ffffff;
+  color:#c58d42;
   text-align: center;
 }
 ul, li {
@@ -90,7 +107,7 @@ footer li {
 footer hr {
   margin: 25px 0;
   width: 100%;
-  background-color: #777777;
+  background-color: #c58d42;
 }
 
 .team {
@@ -108,6 +125,51 @@ footer hr {
 
 .team {
   text-align: center;
+}
+
+/* .navbar a:active {
+  color: #694d27 !important;
+}
+
+.navbar a:link {
+  color: #c58d42 !important;
+}
+
+.navbar a:visited {
+  color: #c58d42 !important;
+}
+
+.navbar a:hover {
+  color: #694d27 !important;
+} */
+
+a:link {
+  color: #777777;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #777777;
+  text-decoration: none;
+}
+
+a:active {
+  color: #777777;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
 }
 
 /* Slide Show */
@@ -148,10 +210,44 @@ footer hr {
 }
 
 .selectEvent {
-  background-color: #dddddd;
-  height: 400px;
+  /* background-color: #dddddd; */
+  /* height: 300px; */
+  padding: 20px 0;
 }
 
+/* ************** Menu Items ******************** */
+
 .eventActions {
-  /* height: 400px; */
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.eventActions li ul {
+  position: relative;
+  display: none;
+  width: auto;
+  border-left-width: 0;
+  opacity: 1;
+  -webkit-animation: none;
+  animation: none;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  margin-bottom: 15px;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.list-group-item {
+  display: block;
+}
+
+.actionItems {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
 }
