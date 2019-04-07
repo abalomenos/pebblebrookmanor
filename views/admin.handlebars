@@ -21,7 +21,7 @@
       <div class="col-md-8 eventLayout">
           {{!-- Add Employee --}}
           <div id="addEmployeeContainer">
-            <form  action="POST">
+            <form class="shade" action="POST">
             <div class="form-group">
               <h2><label for="employeeName">Employee Name</label></h2>
               <input type="text" id="employeeName" class="form-control" aria-describedby="employeeName" placeholder="Enter Employee Name">
@@ -35,7 +35,7 @@
               <input type="text" class="form-control" id="employeeImage" aria-describedby="employeeImage" placeholder="Enter url path to image">
             </div>
             <div class="text-center">
-              <button id="addEmployee" class="btn btn-primary">Submit</button>
+              <button id="addEmployee" class="btn btn-primary submitButton">Add</button>
             </div>
           </form>
         </div>
@@ -43,28 +43,23 @@
         <ul id="employee-list" class="list-group">
             {{#each employees}}
             <li data-id="{{this.id}}" class="list-group-item">
-              <ul class="employeeWrapper">
-                <li class="employeeWrapper">
-                  {{!-- <div > --}}
+              <ul class="adminItemsWrapper">
+                <li class="adminItemsWrapper">
                     <img src='{{this.image}}'  width="100" height="100" alt="Employee" data-toggle="popover" data-trigger="hover" title={{this.name}} data-content='Wage: ${{this.wage}}/hr'>
-                  {{!-- </div> --}}
                 </li>
-                <li class="employeeWrapper float-right">
-                  {{!-- <div > --}}
-                    <ul class="employeeActions">
-                      <li class="employeeActions">
-                        <button class="btn btn-warning employeeActionButton edit">
-                          <a href="employees/{{this.id}}" >Edit Employee</a>
-                        </button>
+                <li class="adminItemsWrapper float-right">
+                    <ul class="adminItemsActions">
+                      <li class="adminItemsActions">
+                        {{!-- <button class="btn btn-warning adminItemsActionButton"> --}}
+                          <a href="employees/{{this.id}}" type="button" class="btn btn-warning adminItemsActionButton" >Edit Employee</a>
+                        {{!-- </button> --}}
                       </li>
-                      <li class="employeeActions">
-                        <button class="btn btn-danger employeeActionButton delete">Delete Employee</button>
+                      <li class="adminItemsActions">
+                        <button class="btn btn-danger adminItemsActionButton">Delete Employee</button>
                       </li>
                     </ul>
-                  {{!-- </div> --}}
                 </li>
               </ul>
-              {{!-- <a href="employees/{{this.id}}" ></a> --}}
             </li>
             {{/each}}
         </ul>
@@ -72,8 +67,23 @@
         <ul id="event-list" class="list-group">
           {{#each events}}
             <li data-id="{{this.id}}" class="list-group-item">
-              <a href="events/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'>{{this.customerName}}</a>
-              <button class="btn btn-danger float-right delete">Delete Event</button>
+              <ul class="adminItemsWrapper">
+                <li class="adminItemsWrapper">
+                  <div data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'><h2>{{this.eventDate}}</h2><h5>{{this.customerName}}</h5></div>
+                </li>
+                <li class="adminItemsWrapper float-right">
+                  <ul class="adminItemsActions">
+                    <li class="adminItemsActions">
+                      {{!-- <button class="btn btn-warning adminItemsActionButton"> --}}
+                        <a href="events/{{this.id}}" type="button" class="btn btn-warning adminItemsActionButton">Edit Event</a>
+                      {{!-- </button> --}}
+                    </li>
+                    <li class="adminItemsActions">
+                      <button class="btn btn-danger adminItemsActionButton">Delete Event</button>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </li>
           {{/each}}
         </ul>
@@ -83,7 +93,7 @@
           <h4 class="center">Actions</h4>
           <ul>
             <li>
-              <a class="expand actionItems" type="button">Employee Management</a>
+              <a class="expand actionItemsMain" type="button">Employee Management</a>
               <ul>
                 <li>
                   <button id="addEmployeeButton" class="actionItems" type="button">
@@ -98,7 +108,7 @@
               </ul>
             </li>
             <li>
-              <a class="expand actionItems" type="button">Event Management</a>
+              <a class="expand actionItemsMain" type="button">Event Management</a>
               <ul>
                 <li>
                   <button id="showEventsButton" class="actionItems" type="button"> 
@@ -121,9 +131,7 @@
             </li>
           </ul>
         </div>
-
-        </div>
-        
-      </div>
+      </div>  
     </div>
   </div>
+</div>
