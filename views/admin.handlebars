@@ -20,27 +20,51 @@
     <div class="row">
       <div class="col-md-8 eventLayout">
           {{!-- Add Employee --}}
-          <form id="addEmployeeContainer" action="POST">
-          <div class="form-group">
-            <label for="employeeName">Employee Name</label>
-            <input type="text" id="employeeName" class="form-control" aria-describedby="employeeName" placeholder="Enter Employee Name">
-          </div>
-          <div class="form-group">
-            <label for="employeeWage">Employee Wage</label>
-            <input type="text" class="form-control" id="employeeWage" aria-describedby="employeeWage" placeholder="Dollar amount per hour">
-          </div>
-          <div class="form-group">
-            <label for="employeeImage">Employee Image</label>
-            <input type="text" class="form-control" id="employeeImage" aria-describedby="employeeImage" placeholder="Enter url path to image">
-          </div>
-          <button id="addEmployee" class="btn btn-primary float-right">Submit</button>
-        </form>
+          <div id="addEmployeeContainer">
+            <form  action="POST">
+            <div class="form-group">
+              <h2><label for="employeeName">Employee Name</label></h2>
+              <input type="text" id="employeeName" class="form-control" aria-describedby="employeeName" placeholder="Enter Employee Name">
+            </div>
+            <div class="form-group">
+              <h2><label for="employeeWage">Employee Wage</label></h2>
+              <input type="text" class="form-control" id="employeeWage" aria-describedby="employeeWage" placeholder="Dollar amount per hour">
+            </div>
+            <div class="form-group">
+              <h2><label for="employeeImage">Employee Image</label></h2>
+              <input type="text" class="form-control" id="employeeImage" aria-describedby="employeeImage" placeholder="Enter url path to image">
+            </div>
+            <div class="text-center">
+              <button id="addEmployee" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
         {{!-- All Employees --}}
         <ul id="employee-list" class="list-group">
             {{#each employees}}
             <li data-id="{{this.id}}" class="list-group-item">
-                <a href="employees/{{this.id}}" data-toggle="popover" data-trigger="hover" title={{this.id}} data-content='Wage: ${{this.wage}}/hr'>{{this.name}}</a>
-                <button class="btn btn-danger float-right delete">Delete Employee</button>
+              <ul class="employeeWrapper">
+                <li class="employeeWrapper">
+                  {{!-- <div > --}}
+                    <img src='{{this.image}}'  width="100" height="100" alt="Employee" data-toggle="popover" data-trigger="hover" title={{this.name}} data-content='Wage: ${{this.wage}}/hr'>
+                  {{!-- </div> --}}
+                </li>
+                <li class="employeeWrapper float-right">
+                  {{!-- <div > --}}
+                    <ul class="employeeActions">
+                      <li class="employeeActions">
+                        <button class="btn btn-warning employeeActionButton">
+                          <a href="employees/{{this.id}}" >Edit Employee</a>
+                        </button>
+                      </li>
+                      <li class="employeeActions">
+                        <button class="btn btn-danger employeeActionButton">Delete Employee</button>
+                      </li>
+                    </ul>
+                  {{!-- </div> --}}
+                </li>
+              </ul>
+              {{!-- <a href="employees/{{this.id}}" ></a> --}}
             </li>
             {{/each}}
         </ul>
@@ -48,7 +72,7 @@
         <ul id="event-list" class="list-group">
           {{#each events}}
             <li data-id="{{this.id}}" class="list-group-item">
-              <a href="event/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'>{{this.customerName}}</a>
+              <a href="events/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'>{{this.customerName}}</a>
               <button class="btn btn-danger float-right delete">Delete Event</button>
             </li>
           {{/each}}
@@ -85,7 +109,7 @@
                   <a class="expand actionItems" type="button">Search Events</a>
                   <ul>
                     <li>
-                      <div class="text-center">
+                      <div class="text-center space">
                         <h5>Date</h5>
                         <p><input type="text" id="datepicker"></p>
                         <button id="searchEvent">Search</button>

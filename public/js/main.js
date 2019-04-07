@@ -182,7 +182,6 @@ $("#searchEvent").click(function(e) {
       return $li;
     });
 
-    // .html so it doesnt append each time
     $eventList.empty();
     $eventList.append($events);
   });
@@ -285,5 +284,15 @@ $('#searchEvent').click(function(e){
 
   $('#event-list').fadeIn();
 });
+
+
+// Back to All Events
+$('#backToAllEvents').click(function(){
+  $('#addEmployeeContainer').hide();
+  $('#employee-list').hide();
+
+  $('#event-list').fadeIn();
+});
+
 
 // ************** Admin Page ********************

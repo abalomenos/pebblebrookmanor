@@ -9,7 +9,7 @@ html {
 
 body {
   line-height: 1.6;
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
 }
 
 body:after{
@@ -41,6 +41,13 @@ h2, h3 {
   color: #c58d42;
 }
 
+h4 {
+  font-weight: bold;
+}
+
+.p1 {
+  font-size: 13px;
+}
 .mainContent {
   display: block;
   height: max-content;
@@ -57,15 +64,21 @@ h2, h3 {
   transform: perspective(1px) translateY(-10%); */
 }
 
+/* ********** Reservation ********** */
+
 .reservationCard {
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) repeat,url("/images/reservationCard2.png") no-repeat center center;
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)) repeat,url("/images/reservationCard2.png") no-repeat center center;
   background-size: cover;
 }
 
-.adminCard {
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)) repeat,url("/images/reservationCard.png") no-repeat center center;
-  background-size: cover;
+.shade {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
 }
+
+/* ********** Reservation End ********** */
+
+
 
 .leftSection {
   text-align: center;
@@ -203,10 +216,29 @@ a.button {
   right: 5px;
 }
 
+
+
+
+
+
+
+
+
+
+
+/* ********** Admin ********** */
+
+.adminCard {
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)) repeat,url("/images/reservationCard.png") no-repeat center center;
+  background-size: cover;
+}
+
 .eventLayout {
+  display: block;
   background-color: #cccccc;
-  height: 460px;
-  width: 500px;
+  height: 550px;
+  width: 100%;
+  padding: 0;
 }
 
 .selectEvent {
@@ -215,12 +247,16 @@ a.button {
   padding: 20px 0;
 }
 
+/* ********** Admin End ********** */
+
+
 /* ************** Menu Items ******************** */
 
 .eventActions {
   position: relative;
   background-color: rgba(0, 0, 0, 0.1);
   height: 100%;
+  padding-top: 15px;
 }
 
 .eventActions li ul {
@@ -241,9 +277,7 @@ a.button {
   transition: none;
 }
 
-.list-group-item {
-  display: block;
-}
+
 
 .actionItems {
   width: 100%;
@@ -260,21 +294,87 @@ a.button {
 
 #employee-list {
   display: none;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
   width: 100%;
 }
 
 #events-list {
   display: none;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
   width: 100%;
 }
 
 #event-list {
   display: none;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100%;
+  width: 100%;
+}
+
+#addEmployeeContainer {
+  padding: 20px;
+}
+
+
+
+/* Popover */
+.popover-header {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+/* Popover Body */
+.popover-body {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.list-group-item {
+  display: block;
+  height: 126px;
+}
+
+.employeeWrapper {
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ul.employeeWrapper li.employeeWrapper {
+  display: inline-block;
+  text-align: justify;
+  vertical-align: middle;
+}
+
+.employeeActions {
+  margin: 10px;
+}
+
+.employeeActionButton {
+  width: 150px;
+}
+
+
+
+/* Event Card */
+.eventCard {
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  height: 450px;
+}
+
+li.eventLayoutActions  {
+  margin: 10px;
+  text-align: center;
+}
+
+#saveEvent {
   width: 100%;
 }
