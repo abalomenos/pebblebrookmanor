@@ -182,6 +182,8 @@ $("#searchEvent").click(function(e) {
       return $li;
     });
 
+    // .html so it doesnt append each time
+    $eventList.empty();
     $eventList.append($events);
   });
 });
@@ -228,18 +230,60 @@ $('[data-toggle="popover"]').popover();
 
 // Enable datepicker
 $(function() {
-  $("#datepicker").datepicker();
+  $('#datepicker').datepicker();
 });
 
 
 
 
-// ************** Menu Items ********************
+// ************** Admin Page ********************
 
-$(document).on('click', 'a.expand', function(e) {
+// Action Items
+$('a.expand').on('click', function(e) {
+// $(document).on('click', 'a.expand', function(e) {
   e.preventDefault();
   $(this).siblings('ul').slideToggle();
   $(this).parent('ul').siblings('li').slideToggle();
 });
 
+// Add Employee
+$('#addEmployeeButton').click(function(e){
+  e.preventDefault();
 
+  $('#employee-list').hide();
+  $('#event-list').hide();
+
+  $('#addEmployeeContainer').fadeIn();
+});
+
+// All Employees
+$('#showEmployeesButton').click(function(e){
+  e.preventDefault();
+
+  $('#addEmployeeContainer').hide();
+  $('#event-list').hide();
+
+  $('#employee-list').fadeIn();
+});
+
+// All Events
+$('#showEventsButton').click(function(e){
+  e.preventDefault();
+
+  $('#addEmployeeContainer').hide();
+  $('#employee-list').hide();
+
+  $('#event-list').fadeIn();
+});
+
+// Search Event
+$('#searchEvent').click(function(e){
+  e.preventDefault();
+
+  $('#addEmployeeContainer').hide();
+  $('#employee-list').hide();
+
+  $('#event-list').fadeIn();
+});
+
+// ************** Admin Page ********************

@@ -18,7 +18,42 @@
   <div class="container adminCard">
     <h2 class="center space">Management</h2>
     <div class="row">
-      <div class="col-md-8 eventLayout"></div>
+      <div class="col-md-8 eventLayout">
+          {{!-- Add Employee --}}
+          <form id="addEmployeeContainer" action="POST">
+          <div class="form-group">
+            <label for="employeeName">Employee Name</label>
+            <input type="text" id="employeeName" class="form-control" aria-describedby="employeeName" placeholder="Enter Employee Name">
+          </div>
+          <div class="form-group">
+            <label for="employeeWage">Employee Wage</label>
+            <input type="text" class="form-control" id="employeeWage" aria-describedby="employeeWage" placeholder="Dollar amount per hour">
+          </div>
+          <div class="form-group">
+            <label for="employeeImage">Employee Image</label>
+            <input type="text" class="form-control" id="employeeImage" aria-describedby="employeeImage" placeholder="Enter url path to image">
+          </div>
+          <button id="addEmployee" class="btn btn-primary float-right">Submit</button>
+        </form>
+        {{!-- All Employees --}}
+        <ul id="employee-list" class="list-group">
+            {{#each employees}}
+            <li data-id="{{this.id}}" class="list-group-item">
+                <a href="employees/{{this.id}}" data-toggle="popover" data-trigger="hover" title={{this.id}} data-content='Wage: ${{this.wage}}/hr'>{{this.name}}</a>
+                <button class="btn btn-danger float-right delete">Delete Employee</button>
+            </li>
+            {{/each}}
+        </ul>
+        {{!-- Search Events --}}
+        <ul id="event-list" class="list-group">
+          {{#each events}}
+            <li data-id="{{this.id}}" class="list-group-item">
+              <a href="event/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'>{{this.customerName}}</a>
+              <button class="btn btn-danger float-right delete">Delete Event</button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
       <div class="col-md-4">
         <div class="eventActions">
           <h4 class="center">Actions</h4>
@@ -27,13 +62,13 @@
               <a class="expand actionItems" type="button">Employee Management</a>
               <ul>
                 <li>
-                  <button class="actionItems" type="button">
-                    <a href="/addemployee">Add Employee</a>
+                  <button id="addEmployeeButton" class="actionItems" type="button">
+                    Add Employee
                   </button>
                 </li>
                 <li>
-                  <button class="actionItems" type="button"> 
-                    <a href="/employees">All Employees</a>
+                  <button id="showEmployeesButton" class="actionItems" type="button"> 
+                    All Employees
                   </button>
                 </li>
               </ul>
@@ -42,32 +77,21 @@
               <a class="expand actionItems" type="button">Event Management</a>
               <ul>
                 <li>
-                  <button class="actionItems" type="button"> 
-                    <a href="/events">All Events</a>
+                  <button id="showEventsButton" class="actionItems" type="button"> 
+                    All Events
                   </button>
                 </li>
                 <li>
-                    <a class="expand actionItems" type="button">Search Events</a>
-                    <ul>
-                      <li>
-                        <div class="selectEvent">
-                          <div class="text-center">
-                            <h5>Date</h5>
-                            <p><input type="text" id="datepicker"></p>
-                            <button id="searchEvent">Search</button>
-                          
-                          <ul id="event-list" class="list-group">
-                            {{#each events}}
-                              <li data-id="{{this.id}}" class="list-group-item">
-                                <a href="event/{{this.id}}" class="reservation" data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content="Event info here">{{this.roomName}}</a>
-                                <button class="btn btn-danger float-right delete">Delete Event</button>
-                              </li>
-                            {{/each}}
-                          </ul>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
+                  <a class="expand actionItems" type="button">Search Events</a>
+                  <ul>
+                    <li>
+                      <div class="text-center">
+                        <h5>Date</h5>
+                        <p><input type="text" id="datepicker"></p>
+                        <button id="searchEvent">Search</button>
+                      </div>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </li>

@@ -75,7 +75,15 @@ module.exports = function(app) {
 
   // Load Admin Page
   app.get("/admin", function(req, res) {
-    res.render("admin");
+    db.Employee.findAll().then(function(dbEmployees) {
+      db.Event.findAll().then(function(dbEvents) {
+        res.render("admin", {
+          // Need Plural
+          employees: dbEmployees,
+          events: dbEvents
+        });
+      });
+    });
   });
 
   // Render 404 page for any unmatched routes

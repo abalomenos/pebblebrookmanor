@@ -1,6 +1,6 @@
-.list-group-item {
+/* .list-group-item {
   line-height: 2.5;
-}
+} */
     
 html {
 	position: relative;
@@ -205,7 +205,7 @@ a.button {
 
 .eventLayout {
   background-color: #cccccc;
-  height: 400px;
+  height: 460px;
   width: 500px;
 }
 
@@ -250,4 +250,31 @@ a.button {
   text-align: center;
   padding: 10px;
   cursor: pointer;
+}
+
+#addEmployeeContainer {
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
+#employee-list {
+  display: none;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+#events-list {
+  display: none;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+#event-list {
+  display: none;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
 }
