@@ -140,7 +140,12 @@ $("#saveEvent").click(function() {
 
 
 // ************* Get Event by Date **************
-$("#searchEvent").click(function() {
+$("#searchEvent").click(function(e) {
+  
+  // Menu Items Toggle
+  e.preventDefault();
+  $(this).siblings('ul').slideToggle();
+
   var date = moment(new Date($("#datepicker").val())).format("MM-DD-YYYY");
   console.log(date);
   $.ajax({
@@ -229,4 +234,12 @@ $(function() {
 
 
 
-// ************** Routing ********************
+// ************** Menu Items ********************
+
+$(document).on('click', 'a.expand', function(e) {
+  e.preventDefault();
+  $(this).siblings('ul').slideToggle();
+  $(this).parent('ul').siblings('li').slideToggle();
+});
+
+
