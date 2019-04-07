@@ -1,7 +1,7 @@
 
 // ********** Get References To Page Elements **********
 
-// All Events
+// All Events / Search Event
 var $eventList = $("#event-list");
 
 // Reservation Page
@@ -91,6 +91,7 @@ var API = {
   }
 };
 
+// All Events / Search Event
 // Gets new event from the db and repopulates the list
 var refreshEvents = function() {
   API.getEvents().then(function(data) {
