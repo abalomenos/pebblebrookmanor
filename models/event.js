@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       customerName: DataTypes.STRING,
       customerEmail: DataTypes.STRING,
       tables: { 
-        type: DataTypes.STRING, 
+        type: DataTypes.TEXT, 
         get: function() {
           try{
             return JSON.parse(this.getDataValue('tables'));
