@@ -12,12 +12,12 @@ module.exports = function(app) {
     });
   });
 
-  // // Get all Events
-  // app.get("/api/events", function(req, res) {
-  //   db.Event.findAll({}).then(function(dbEvents) {
-  //     res.json(dbEvents);
-  //   });
-  // });
+  // Get all Events
+  app.get("/api/events", function(req, res) {
+    db.Event.findAll({}).then(function(dbEvents) {
+      res.json(dbEvents);
+    });
+  });
 
   // Create a new Event
   app.post("/api/events", function(req, res) {
