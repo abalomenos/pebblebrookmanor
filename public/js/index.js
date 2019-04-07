@@ -192,27 +192,27 @@ var refreshEmployees = function() {
         .text("Delete Employee");
   
       var $employeeActionsDelete = $("<li>")  
-        .addClass("employeeActions")
+        .addClass("adminItemsActions")
         .append($deleteButton)
 
       var $employeeActionsEdit = $("<li>")  
-        .addClass("employeeActions")
+        .addClass("adminItemsActions")
         .append($editButton)  
 
       var $employeeActionsUL = $("<ul>")  
-        .addClass("employeeActions")
+        .addClass("adminItemsActions")
+        .append($employeeActionsEdit)
         .append($employeeActionsDelete)
-        .prepend($employeeActionsEdit);
 
       var $employeeButtonList = $("<li>")  
-        .addClass("employeeWrapper float-right")
+        .addClass("adminItemsWrapper float-right")
         .append($employeeActionsUL)
               
       var $img = $("<img />")
         .attr({
           src: employee.image,
-          width: "100",
-          height: "100",
+          width: 100,
+          height: 100,
           alt: "Employee"
         })
         .attr("data-toggle", "popover")  
@@ -222,11 +222,11 @@ var refreshEmployees = function() {
         // .attr("href", "/employee/" + employee.id);
 
       var $employeeWrapperLI = $("<li>")  
-        .addClass("employeeWrapper")
+        .addClass("adminItemsWrapper")
         .append($img);
 
       var $employeeWrapperUL = $("<ul>")  
-        .addClass("employeeWrapper")
+        .addClass("adminItemsWrapper")
         .append($employeeWrapperLI)
         .append($employeeButtonList)
       
