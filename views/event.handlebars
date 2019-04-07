@@ -18,18 +18,17 @@
   <div class="container adminCard">
     <h2 class="center space">Management</h2>
     <div class="row">
-      <div class="col-md-8 eventLayout"></div>
+      <div class="col-md-8 eventLayout">
+        {{!-- Event Tables Layout --}}
+        <div id="eventLayoutItems"></div>
+      </div>
       <div class="col-md-4">
         <div class="eventActions">
           <h4 class="center">Actions</h4>
           <ul>
             
                 <li>
-                  <button id="backToAllEvents" class="actionItems" type="button"> 
-                    {{!-- All Events --}}
-                    <a href="/admin" >All Events</a>
-                  </button>
-                  
+                  <a href="/admin" class="actionItemsMain" type="button">← Go Back</a>                  
                 </li>
               
           </ul>

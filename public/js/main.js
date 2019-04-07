@@ -68,7 +68,7 @@ $(function() {
 // Add Table
 $("#addTable").click(function() {
   var table = $(".draggable").length + 1;
-  $(".eventLayout").append(
+  $("#eventLayoutItems").append(
     $(
       '<div id="drag-' +
         table +
@@ -239,7 +239,6 @@ $(function() {
 
 // Action Items
 $('a.expand').on('click', function(e) {
-// $(document).on('click', 'a.expand', function(e) {
   e.preventDefault();
   $(this).siblings('ul').slideToggle();
   $(this).parent('ul').siblings('li').slideToggle();
@@ -279,15 +278,6 @@ $('#showEventsButton').click(function(e){
 $('#searchEvent').click(function(e){
   e.preventDefault();
 
-  $('#addEmployeeContainer').hide();
-  $('#employee-list').hide();
-
-  $('#event-list').fadeIn();
-});
-
-
-// Back to All Events
-$('#backToAllEvents').click(function(){
   $('#addEmployeeContainer').hide();
   $('#employee-list').hide();
 
