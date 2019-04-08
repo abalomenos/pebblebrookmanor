@@ -113,13 +113,14 @@ $(document).on("click", ".deleteTable", function() {
 // ************ Save Event *****************
 
 $("#saveEvent").click(function() {
-
+  
+  // Get Event ID from URL
+  var eventRef = window.location.pathname.split("/")[2];
+  
   // Delete Tables from DB so no Duplicate
-  var idToDelete = window.location.pathname.split("/")[2];
-    API.deleteLayout(idToDelete).then(function() {
+    API.deleteLayout(eventRef).then(function() {
   });
 
-  var eventID = window.location.pathname.split("/")[2];
   $(".draggable").each(function() {
     tableID = this.id.split("-").pop();
     xCoords = $("#" + this.id).attr("data-x");
@@ -130,7 +131,7 @@ $("#saveEvent").click(function() {
     if (yCoords == null) {
       yCoords = 0;
     }
-    console.log("EventID " + eventID);
+    console.log("eventRef " + eventRef);
     console.log("TableID " + tableID);
     console.log("x " + xCoords);
     console.log("y " + yCoords);
@@ -145,7 +146,7 @@ $("#saveEvent").click(function() {
       url: "/api/layouts/",
       type: "POST",
       data: {
-        eventID: eventID,
+        eventRef: eventRef,
         tableID: tableID,
         xCoords: xCoords,
         yCoords: yCoords
@@ -172,8 +173,7 @@ $("#searchEvent").click(function(e) {
     url: "api/events/" + date,
     type: "GET"
   }).then(function(data) {
-    console.log(data);
-    var $events = data.map(function(data) {
+    var $events = data.map(function(event) {
       var $editButton = $("<a>") 
         .attr("href", "events/" + event.id)
         .attr("type", "button")
@@ -203,39 +203,40 @@ $("#searchEvent").click(function(e) {
         .append($eventActionsUL)
               
       var $div = $("<div>")
-        .attr({
-          src: employee.image,
-          width: 100,
-          height: 100,
-          alt: "Employee"
-        })
         .attr("data-toggle", "popover")  
         .attr("data-trigger", "hover")
         .attr("title", event.roomName)
-        .attr("data-original-title", employee.name)
-        // .attr("data-content", "Date: " + event.eventDate + ", Guests: " + event.partySize + <h2>event.eventDate</h2> + <h5>event.customerName</h5>)
+        .attr("data-content", "Date: " + event.eventDate + ", Guests: " + event.partySize)
+        
+      var $h2 = $("<h2>")
+        .html(event.eventDate)
+        
+      var $h5 = $("<h5>")
+        .html(event.customerName)
 
-      var $employeeWrapperLI = $("<li>")  
+      var $eventWrapperLI = $("<li>")
         .addClass("adminItemsWrapper cursorPointer")
-        .append($img);
+        .append($div)
+        .append($h2)
+        .append($h5);
 
-      var $employeeWrapperUL = $("<ul>")  
+      var $eventWrapperUL = $("<ul>")  
         .addClass("adminItemsWrapper")
-        .append($employeeWrapperLI)
-        .append($employeeButtonList)
+        .append($eventWrapperLI)
+        .append($eventButtonList)
       
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
-          "data-id": employee.id
+          "data-id": event.id
         })
-        .append($employeeWrapperUL);
+        .append($eventWrapperUL);
 
       return $li;
     });
 
-    $employeeList.empty();
-    $employeeList.append($employees);
+    $eventList.empty();
+    $eventList.append($events);
   });
 });
       
