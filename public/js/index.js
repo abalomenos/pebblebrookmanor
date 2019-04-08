@@ -18,9 +18,6 @@ var $employeeWage = $("#employeeWage");
 var $employeeImage = $("#employeeImage");
 var $submitEmployee = $("#addEmployee");
 
-// Admin Page
-var $searchEvent = $("#searchEvent");
-
 // All Employees Page
 var $employeeList = $("#employee-list");
 
@@ -96,37 +93,6 @@ var API = {
       type: "DELETE"
     });
   },
-};
-
-
-// ***** refreshEvents
-// Gets new event from the db and repopulates the list
-var refreshEvents = function() {
-  API.getEvents().then(function(data) {
-    var $events = data.map(function(event) {
-      var $a = $("<a>")
-        .text(event.customerName)
-        .attr("href", "/event/" + event.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": event.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("x");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $eventList.empty();
-    $eventList.append($events);
-  });
 };
 
 
@@ -314,5 +280,4 @@ $eventList.on("click", ".delete", deleteEvent);
 $employeeList.on("click", ".delete", deleteEmployee);
 $updateEmployee.on("click", updateEmployee);
 
-$searchEvent.on("click", refreshEvents);
 
