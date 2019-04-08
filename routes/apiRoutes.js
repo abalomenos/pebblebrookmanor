@@ -118,4 +118,18 @@ module.exports = function(app) {
       res.json(dbEmployee);
     });
   });
+
+  // Delete a Table for Event
+  app.delete("/:id", function(req, res) {
+    db.Layout.destroy({
+      where: {
+        eventID: req.params.id
+      }
+    }).then(function(dbLayout) {
+      res.json(dbLayout);
+    });
+  });
+
 };
+
+  
