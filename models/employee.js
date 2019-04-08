@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       image: DataTypes.STRING
     },
     {
-      timestamps: false
+      timestamps: true
     }
   );
   return Employee;
