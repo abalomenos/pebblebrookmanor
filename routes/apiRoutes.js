@@ -130,7 +130,7 @@ module.exports = function(app) {
   app.delete("/:id", function(req, res) {
     db.Layout.destroy({
       where: {
-        eventID: req.params.id
+        eventRef: req.params.id
       }
     }).then(function(dbLayout) {
       res.json(dbLayout);
