@@ -188,40 +188,49 @@ $("#searchEvent").click(function(e) {
 });
 
 
-// ************* Get employees ***********
-$(".reservation").on("click", function() {
+// // ************* Get employees ***********
+// $(".reservation").on("click", function() {
+//   $.ajax({
+//       url: "api/employees",
+//       type: "GET"
+//     }).then(function(data) {
+//       console.log(data)
+//       var $employees = data.map(function(data) {
+//         var $a = $("<a>")
+//           .text(data.employeeName)
+//           .attr("href", "/employee/" + data.id)
+  
+//         var $li = $("<li>")
+//           .attr({
+//             class: "list-group-item list-group-item-action",
+//             "data-id": data.id
+//           })
+//           .append($a);
+  
+//         var $button = $("<button>")
+//           .addClass("btn btn-danger float-right delete")
+//           .text("x");
+  
+//         $li.append($button);
+  
+//         return $li;
+//       });
+  
+//       $employeeList.append($employees);
+//     });
+//   }); 
+
+
+// ************* GET LAYOUT **************
+$("#edit-event").on("click", function() {
+  var eventID = window.location.pathname.split("/")[2];
   $.ajax({
-      url: "api/employees",
-      type: "GET"
-    }).then(function(data) {
-      console.log(data)
-      var $employees = data.map(function(data) {
-        var $a = $("<a>")
-          .text(data.employeeName)
-          .attr("href", "/employee/" + data.id)
-  
-        var $li = $("<li>")
-          .attr({
-            class: "list-group-item list-group-item-action",
-            "data-id": data.id
-          })
-          .append($a);
-  
-        var $button = $("<button>")
-          .addClass("btn btn-danger float-right delete")
-          .text("x");
-  
-        $li.append($button);
-  
-        return $li;
-      });
-  
-      $employeeList.append($employees);
-    });
-  }); 
-
-
-
+    url: "/api/events/" + eventID,
+    type: "GET"
+  }).then(function(data) {
+    console.log(data)
+  })
+})
 
 
 // Enable popovers
