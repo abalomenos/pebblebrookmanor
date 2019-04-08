@@ -30,10 +30,13 @@ module.exports = function(sequelize, DataTypes) {
       employees: DataTypes.STRING,
       roomName: DataTypes.STRING,
       partySize: DataTypes.INTEGER
-    },
-    {
-      timestamps: true
-    }
-  );
+    });
+
+    Event.associate = function(models) {
+      Event.hasMany(models.Layout, {
+        onDelete: "cascade"
+      });
+    };
+    
   return Event;
 };
