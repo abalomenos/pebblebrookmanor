@@ -82,6 +82,13 @@ module.exports = function(app) {
     });
   });
 
+  // Get layout from DB
+  app.get("/api/layouts", function(req, res) {
+    db.Layout.findAll({}).then(function(dbLayout) {
+      res.json(dbLayout);
+    });
+  });
+
   // Get all Employees
   app.get("/api/employees", function(req, res) {
     db.Employee.findAll({}).then(function(dbEmployees) {
@@ -96,17 +103,17 @@ module.exports = function(app) {
     });
   });
 
-  // Update an Employee by id
-  app.put("/api/employees/", function(req, res) {
-    console.log(req.body)
-    db.Employee.update(req.body, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function(dbEmployee) {
-      res.json(dbEmployee);
-    });
-  });
+  // // Update an Employee by id
+  // app.put("/api/employees/", function(req, res) {
+  //   console.log(req.body)
+  //   db.Employee.update(req.body, {
+  //     where: {
+  //       id: req.body.id
+  //     }
+  //   }).then(function(dbEmployee) {
+  //     res.json(dbEmployee);
+  //   });
+  // });
 
   // Delete an Employee by id
   app.delete("/api/employees/:id", function(req, res) {
@@ -123,7 +130,7 @@ module.exports = function(app) {
   app.delete("/:id", function(req, res) {
     db.Layout.destroy({
       where: {
-        eventID: req.params.id
+        eventRef: req.params.id
       }
     }).then(function(dbLayout) {
       res.json(dbLayout);

@@ -18,12 +18,11 @@ var $employeeWage = $("#employeeWage");
 var $employeeImage = $("#employeeImage");
 var $submitEmployee = $("#addEmployee");
 
-// Admin Page
-var $searchEvent = $("#searchEvent");
-
 // All Employees Page
 var $employeeList = $("#employee-list");
 
+// Update Employee
+var $updateEmployee = $("#update-employee");
 // ********** Get References To Page Elements End **********
 
 
@@ -81,10 +80,11 @@ var API = {
       type: "DELETE"
     });
   },
-  updateEmployee: function() {
+  updateEmployee: function(data) {
     return $.ajax({
-      url: "api/employees/",
-      type: "PUT"
+      url: "/api/employees/",
+      type: "PUT",
+      data: data
     });
   },
   deleteLayout: function(id) {
@@ -93,37 +93,6 @@ var API = {
       type: "DELETE"
     });
   },
-};
-
-
-// ***** refreshEvents
-// Gets new event from the db and repopulates the list
-var refreshEvents = function() {
-  API.getEvents().then(function(data) {
-    var $events = data.map(function(event) {
-      var $a = $("<a>")
-        .text(event.customerName)
-        .attr("href", "/event/" + event.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": event.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("x");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $eventList.empty();
-    $eventList.append($events);
-  });
 };
 
 
@@ -286,7 +255,7 @@ var updateEmployee = function(event) {
     image: $employeeImage.val().trim()
   };
 API.updateEmployee(employee).then(function() {});
-$employeeName.val("");
+  $employeeName.val("");
   $employeeWage.val("");
   $employeeImage.val("");
 };
@@ -309,7 +278,6 @@ $submitEvent.on("click", addEvent);
 $submitEmployee.on("click", addEmployee);
 $eventList.on("click", ".delete", deleteEvent);
 $employeeList.on("click", ".delete", deleteEmployee);
-// $employeeList.on("click", ".update", updateEmployee);
+$updateEmployee.on("click", updateEmployee);
 
-$searchEvent.on("click", refreshEvents);
 
