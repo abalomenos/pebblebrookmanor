@@ -221,7 +221,7 @@ var refreshEmployees = function() {
         .attr("data-content", "Wage: $" + employee.wage + "/hr")
 
       var $employeeWrapperLI = $("<li>")  
-        .addClass("adminItemsWrapper")
+        .addClass("adminItemsWrapper cursorPointer")
         .append($img);
 
       var $employeeWrapperUL = $("<ul>")  
