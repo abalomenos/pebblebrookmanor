@@ -67,6 +67,7 @@ module.exports = function(app) {
 
   // Update an Employee by id
   app.put("/api/employees/", function(req, res) {
+    console.log(req.body)
     db.Employee.update(req.body, {
       where: {
         id: req.body.id
