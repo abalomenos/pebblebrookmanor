@@ -39,9 +39,13 @@ module.exports = function(app) {
   // Load Events page and pass in an Event by id
   app.get("/events/:id", function(req, res) {
     db.Event.findOne({ where: { id: req.params.id } }).then(function(dbEvent) {
-      res.render("event", {
-        // Need single
-        event: dbEvent
+      db.Layout.findAll({ where: { eventID: req.params.id } }).then(function(dbLayouts) {
+        res.render("event", {
+          // Need single
+          event: dbEvent,
+          layouts: dbLayouts
+      });
+      
       });
     });
   });

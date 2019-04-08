@@ -32,13 +32,13 @@ module.exports = function(sequelize, DataTypes) {
         }  
       });
 
-    Layout.associate = function(models) {
-      Layout.belongsTo(models.Event, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    };
+    // Layout.associate = function(models) {
+    //   Layout.belongsTo(models.Event, {
+    //     foreignKey: {
+    //       allowNull: false
+    //     }
+    //   });
+    // };
     
     return Layout;
   };

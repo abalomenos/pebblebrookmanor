@@ -360,8 +360,8 @@ button.actionItems:hover{
 #eventLayoutItems {
   /* display: none; */
   background-color: #cccccc;
-  height: 100%;
-  width: 100%;
+  height: 550px;
+  height: 550px;
   overflow: scroll;
 }
 

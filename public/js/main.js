@@ -1,38 +1,42 @@
 // ************** Draggable **************
 
 // target elements with the "draggable" class
-interact(".draggable").draggable({
-  // enable inertial throwing
-  inertia: true,
-  // keep the element within the area of it's parent
-  modifiers: [
-    interact.modifiers.restrict({
-      restriction: "parent",
-      endOnly: true,
-      elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    })
-  ],
-  // enable autoScroll
-  autoScroll: false,
+interact('.draggable')
+  .draggable({
+    // enable inertial throwing
+    inertia: true,
+    // keep the element within the area of it's parent
+    modifiers: [
+      interact.modifiers.restrict({
+        restriction: "#eventLayoutItems",
+        endOnly: true,
+        elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+      }),
+    ],
+    // enable autoScroll
+    autoScroll: true,
 
-  // call this function on every dragmove event
-  onmove: dragMoveListener
-});
+    // call this function on every dragmove event
+    onmove: dragMoveListener
 
-function dragMoveListener(event) {
-  var target = event.target,
-    // keep the dragged position in the data-x/data-y attributes
-    x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx,
-    y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
+  });
 
-  // translate the element
-  target.style.webkitTransform = target.style.transform =
-    "translate(" + x + "px, " + y + "px)";
+  function dragMoveListener (event) {
+    var target = event.target,
+        // keep the dragged position in the data-x/data-y attributes
+        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-  // update the posiion attributes
-  target.setAttribute("data-x", x);
-  target.setAttribute("data-y", y);
-}
+    // translate the element
+    target.style.webkitTransform =
+    target.style.transform =
+      'translate(' + x + 'px, ' + y + 'px)';
+
+    // update the posiion attributes
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+  }
+
 
 // ************** Draggable End **************
 
@@ -96,18 +100,29 @@ $(document).on("click", ".deleteTable", function() {
 
     // Reset Table Data
     $("#" + this.id).html(
-      i + '<button id="deleteTable-' + i + '" class="deleteTable">X</button>'
+      i + '<button id="deleteTable-drag-' + i + '" class="deleteTable">X</button>'
     );
+
+    // Delete Tables from DB
+    var idToDelete = window.location.pathname.split("/")[2];
+      API.deleteLayout(idToDelete).then(function() {
+    });
   });
 });
 
 // ************ Save Event *****************
 
 $("#saveEvent").click(function() {
-  // var tablesArray = [];
+  
+  // Get Event ID from URL
   var eventRef = window.location.pathname.split("/")[2];
+  
+  // Delete Tables from DB so no Duplicate
+    API.deleteLayout(eventRef).then(function() {
+  });
+
   $(".draggable").each(function() {
-    tableID = this.id;
+    tableID = this.id.split("-").pop();
     xCoords = $("#" + this.id).attr("data-x");
     if (xCoords == null) {
       xCoords = 0;
@@ -116,7 +131,7 @@ $("#saveEvent").click(function() {
     if (yCoords == null) {
       yCoords = 0;
     }
-    console.log("EventID " + eventRef);
+    console.log("eventRef " + eventRef);
     console.log("TableID " + tableID);
     console.log("x " + xCoords);
     console.log("y " + yCoords);
@@ -199,7 +214,7 @@ $("#searchEvent").click(function(e) {
       var $h5 = $("<h5>")
         .html(event.customerName)
 
-      var $eventWrapperLI = $("<li>")  
+      var $eventWrapperLI = $("<li>")
         .addClass("adminItemsWrapper cursorPointer")
         .append($div)
         .append($h2)

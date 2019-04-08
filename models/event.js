@@ -32,11 +32,11 @@ module.exports = function(sequelize, DataTypes) {
       partySize: DataTypes.INTEGER
     });
 
-    Event.associate = function(models) {
-      Event.hasMany(models.Layout, {
-        onDelete: "cascade"
-      });
-    };
+    // Event.associate = function(models) {
+    //   Event.hasMany(models.Layout, {
+    //     onDelete: "cascade"
+    //   });
+    // };
     
   return Event;
 };

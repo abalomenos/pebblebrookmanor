@@ -89,7 +89,13 @@ var API = {
       type: "PUT",
       data: data
     });
-  }
+  },
+  deleteLayout: function(id) {
+    return $.ajax({
+      url: "/" + id,
+      type: "DELETE"
+    });
+  },
 };
 
 
