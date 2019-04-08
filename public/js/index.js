@@ -86,7 +86,13 @@ var API = {
       url: "api/employees/",
       type: "PUT"
     });
-  }
+  },
+  deleteLayout: function(id) {
+    return $.ajax({
+      url: "/" + id,
+      type: "DELETE"
+    });
+  },
 };
 
 
