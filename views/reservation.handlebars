@@ -1,50 +1,52 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
-    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="160" height="35" class="d-inline-block align-top" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="/grande">Grande Room</a>
-            <a class="nav-item nav-link" href="/venti">Venti Room</a>
-            <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
+            <a class="nav-item nav-link" href="/brandview">Brandview Ballroom</a>
+            <a class="nav-item nav-link" href="/glenoaks">Glenoaks Ballroom</a>
+            <a class="nav-item nav-link" href="/lefoyer">Le Foyer Ballroom</a>
             <a class="nav-item nav-link active" href="/reservation">Reservation<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/admin">Management</a>
         </div>
     </div>
 </nav>
 <div class="mainContent">
-    <div class="container">
-        <h2 class="center space">Reservation</h2>
+    <div class="container reservationCard">
+        <h1 class="center space">Reservation</h1>
         <div class="row">
           <div class="col-md-6 offset-3">
-              <form class="clearfix mb-4" action="POST">
+              <form class="clearfix mb-4 shade" action="POST">
                 <div class="form-group">
-                  <label for="date">Date</label>
+                  <h2><label for="date">Date</label></h2>
                   <input type="text" id="datepicker" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="customerName">Name</label>
+                  <h2><label for="customerName">Name</label></h2>
                   <input type="text" id="customerName" class="form-control" aria-describedby="customerName" placeholder="Enter your name">
                 </div>
                 <div class="form-group">
-                  <label for="customerEmail">Email</label>
+                  <h2><label for="customerEmail">Email</label></h2>
                   <input type="text" id="customerEmail" class="form-control" aria-describedby="customerEmail" placeholder="Enter your email">
                 </div>
                 <div class="form-group">
-                  <label for="roomName">Room</label>
+                  <h2><label for="roomName">Ballroom</label></h2>
                   <select class="form-control" id="roomName" aria-describedby="roomName">
-                    <option>Grande Room</option>
-                    <option>Venti Room</option>
-                    <option>Luxor Room</option>
+                    <option>Brandview</option>
+                    <option>Glenoaks</option>
+                    <option>Le Foyer</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="partySize">Party Size</label>
+                  <h2><label for="partySize">Party Size</label></h2>
                   <input type="text" class="form-control" id="partySize" aria-describedby="partySize" placeholder="How many people will be attending?">
                 </div>
-                <button id="submit-event" class="btn btn-primary float-right">Submit</button>
+                <div class="text-center">
+                  <button id="submit-event" class="btn btn-primary submitButton">Reserve</button>
+                </div>
               </form>
             </div>
         </div>

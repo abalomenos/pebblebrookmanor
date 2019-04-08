@@ -1,37 +1,68 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
-    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="120" height="35" class="d-inline-block align-top" alt=""></a>
+    <a class="navbar-brand" href="/"><img src="/images/logo.png" width="160" height="35" class="d-inline-block align-top" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="/">Home</a>
-            <a class="nav-item nav-link" href="/grande">Grande Room</a>
-            <a class="nav-item nav-link" href="/venti">Venti Room</a>
-            <a class="nav-item nav-link" href="/luxor">Luxor Room</a>
+            <a class="nav-item nav-link" href="/brandview">Brandview Ballroom</a>
+            <a class="nav-item nav-link" href="/glenoaks">Glenoaks Ballroom</a>
+            <a class="nav-item nav-link" href="/lefoyer">Le Foyer Ballroom</a>
             <a class="nav-item nav-link" href="/reservation">Reservation</a>
             <a class="nav-item nav-link active" href="/admin">Management<span class="sr-only">(current)</span></a>
         </div>
     </div>
 </nav>
 <div class="mainContent">
-  <div class="container">
+  <div class="container adminCard">
+    <h2 class="center space">Management</h2>
     <div class="row">
-      <div class="col-8 offset-2">
-        <div class="card mt-4">
-          <div class="card-body">
-            <h3 class="card-title" id={{event.id}}>Event {{event.id}}</h3>
-            <p>
-              <strong>Date</strong>: {{event.eventDate}}</p>
-            <p>
-              <strong>Room Name</strong>: {{event.roomName}}</p>
-            <p>
-              <strong>Customer Name</strong>: {{event.customerName}}</p>
-            <p>
-              <strong>Customer Email</strong>: {{event.customerEmail}}</p>
-            <p>
-              <strong>Event Size</strong>: {{event.partySize}}</p>
-              <a href="/events">← Go Back</a>
+      <div class="col-md-8 eventLayout">
+        {{!-- Event Tables Layout --}}
+        <div id="eventLayoutItems" class="eventLayoutItems">
+          {{#each layouts}}
+            <div id='drag-{{this.tableID}}' class='draggable' style='transform: translate({{this.xCoords}}px, {{this.yCoords}}px);' data-x='{{this.xCoords}}' data-y='{{this.yCoords}}'>{{this.tableID}}<button id='deleteTable-{{this.tableID}}' class='deleteTable'>X</button></div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="eventActions">
+          <h4 class="center">Actions</h4>
+          <ul>
+            
+                <li>
+                  <a href="/admin" class="actionItemsMain" type="button">← Go Back</a>                  
+                </li>
+              
+          </ul>
+          <div class="eventCard" id='{{event.id}}'>
+            <h3 class="card-title center">Event</h3>
+            <p class="p1">
+              <strong>Ballroom</strong>: {{event.roomName}}
+            </p>
+            <p class="p1">
+              <strong>Date</strong>: {{event.eventDate}}
+            </p>
+            <p class="p1">
+              <strong>Guests</strong>: {{event.partySize}}
+            </p>
+            <h3 class="center">Customer</h3>
+            <p class="p1">
+              <strong>Name</strong>: {{event.customerName}}
+            </p>
+            <p class="p1">
+              <strong>Email</strong>: {{event.customerEmail}}
+            </p>
+            <h3 class="card-title center">Layout</h3>
+            <ul>
+              <li class="eventLayoutActions">
+                <button id="addTable">Add Table</button>
+              </li>
+              <li class="eventLayoutActions">
+                <button id="saveEvent">Save Layout</button>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

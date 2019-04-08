@@ -1,7 +1,7 @@
 
 // ********** Get References To Page Elements **********
 
-// All Events
+// All Events / Search Event
 var $eventList = $("#event-list");
 
 // Reservation Page
@@ -23,8 +23,6 @@ var $searchEvent = $("#searchEvent");
 
 // All Employees Page
 var $employeeList = $("#employee-list");
-
-
 
 // ********** Get References To Page Elements End **********
 
@@ -88,9 +86,17 @@ var API = {
       url: "api/employees/",
       type: "PUT"
     });
-  }
+  },
+  deleteLayout: function(id) {
+    return $.ajax({
+      url: "/" + id,
+      type: "DELETE"
+    });
+  },
 };
 
+
+// ***** refreshEvents
 // Gets new event from the db and repopulates the list
 var refreshEvents = function() {
   API.getEvents().then(function(data) {
@@ -120,7 +126,9 @@ var refreshEvents = function() {
   });
 };
 
-// addEvent is called whenever a new event is created
+
+// ***** addEvent
+// called whenever a new event is created
 // Save the new event to the db and refresh the list
 var addEvent = function(event) {
   event.preventDefault();
@@ -150,11 +158,7 @@ var addEvent = function(event) {
     return;
   }
 
-  console.log(event);
-
-  API.saveEvent(event).then(function() {
-    refreshEvents();
-  });
+  API.saveEvent(event);
 
   $eventDate.val("");
   $customerName.val("");
@@ -163,46 +167,92 @@ var addEvent = function(event) {
   $partySize.val("");
 };
 
+
+// ***** deleteEvent
 var deleteEvent = function() {
   var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+    .closest(".list-group-item")
+    .attr("data-id")
 
   API.deleteEvent(idToDelete).then(function() {
-    refreshEvents();
+    $('li[data-id="' + idToDelete +'"]').remove();
   });
 };
 
+
+// ***** refreshEmployees
 // Gets new employee from the db and repopulates the list
 var refreshEmployees = function() {
   API.getEmployees().then(function(data) {
     var $employees = data.map(function(employee) {
-      var $a = $("<a>")
-        .text(employee.name)
-        .attr("href", "/employee/" + employee.id);
+      
+      var $editButton = $("<a>") 
+        .attr("href", "employees/" + employee.id)
+        .attr("type", "button")
+        .addClass("btn btn-warning adminItemsActionButton edit")
+        .text("Edit Employee")
 
+      var $deleteButton = $("<button>")
+        .addClass("btn btn-danger adminItemsActionButton delete")
+        .text("Delete Employee");
+  
+      var $employeeActionsDelete = $("<li>")  
+        .addClass("employeeActions")
+        .append($deleteButton)
+
+      var $employeeActionsEdit = $("<li>")  
+        .addClass("employeeActions")
+        .append($editButton)  
+
+      var $employeeActionsUL = $("<ul>")  
+        .addClass("employeeActions")
+        .append($employeeActionsEdit)
+        .append($employeeActionsDelete)
+
+      var $employeeButtonList = $("<li>")  
+        .addClass("adminItemsWrapper float-right")
+        .append($employeeActionsUL)
+              
+      var $img = $("<img />")
+        .attr({
+          src: employee.image,
+          width: 100,
+          height: 100,
+          alt: "Employee"
+        })
+        .attr("data-toggle", "popover")  
+        .attr("data-trigger", "hover")
+        .attr("title", "")
+        .attr("data-original-title", employee.name)
+        .attr("data-content", "Wage: $" + employee.wage + "/hr")
+
+      var $employeeWrapperLI = $("<li>")  
+        .addClass("adminItemsWrapper cursorPointer")
+        .append($img);
+
+      var $employeeWrapperUL = $("<ul>")  
+        .addClass("adminItemsWrapper")
+        .append($employeeWrapperLI)
+        .append($employeeButtonList)
+      
       var $li = $("<li>")
         .attr({
           class: "list-group-item",
           "data-id": employee.id
         })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("Delete Employee");
-
-      $li.append($button);
+        .append($employeeWrapperUL);
 
       return $li;
     });
 
-    employeeList.empty();
-    employeeList.append($employees);
+    $employeeList.empty();
+    $employeeList.append($employees);
   });
 };
 
-// addEmployee is called whenever we submit a new employee
+
+// ***** addEmployee ***** 
+// Called whenever we submit a new employee
 // Save the new employee to the db and refresh the list
 var addEmployee = function(event) {
   event.preventDefault();
@@ -218,8 +268,6 @@ var addEmployee = function(event) {
     return;
   }
 
-  console.log("Saving new employee " + employee);
-
   API.saveEmployee(employee).then(function() {
     refreshEmployees();
   });
@@ -229,23 +277,39 @@ var addEmployee = function(event) {
   $employeeImage.val("");
 };
 
-// removeEmployee is called when an employee's delete button is clicked
+var updateEmployee = function(event) {
+  event.preventDefault();
+
+  var employee = {
+    name: $employeeName.val().trim(),
+    wage: $employeeWage.val().trim(),
+    image: $employeeImage.val().trim()
+  };
+API.updateEmployee(employee).then(function() {});
+$employeeName.val("");
+  $employeeWage.val("");
+  $employeeImage.val("");
+};
+// ***** deleteEmployee *****
+// Called when an employee's delete button is clicked
 // Remove the employee from the db and refresh the list
 var deleteEmployee = function() {
   var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+    .closest(".list-group-item")
+    .attr("data-id")
 
   API.deleteEmployee(idToDelete).then(function() {
-    refreshEmployees();
+    $('li[data-id="' + idToDelete +'"]').remove();
   });
 };
+
 
 // Add event listeners to the submit and delete buttons
 $submitEvent.on("click", addEvent);
 $submitEmployee.on("click", addEmployee);
 $eventList.on("click", ".delete", deleteEvent);
 $employeeList.on("click", ".delete", deleteEmployee);
+// $employeeList.on("click", ".update", updateEmployee);
 
 $searchEvent.on("click", refreshEvents);
 

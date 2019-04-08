@@ -1,6 +1,6 @@
-.list-group-item {
+/* .list-group-item {
   line-height: 2.5;
-}
+} */
     
 html {
 	position: relative;
@@ -9,8 +9,7 @@ html {
 
 body {
   line-height: 1.6;
-  font-family: Arial, Helvetica, sans-serif;
-  
+  font-family: 'Roboto', sans-serif;
 }
 
 body:after{
@@ -29,20 +28,56 @@ body:after{
   background-size: cover;
 }
 
+
+h1, h2, h3 {
+  font-family: 'Great Vibes', cursive;
+}
+
+h1 {
+  color: #996515;
+}
+
+h2, h3 {
+  color: #c58d42;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.p1 {
+  font-size: 13px;
+  margin-bottom: 8px!important;
+}
 .mainContent {
   display: block;
   height: max-content;
-  min-height: calc(100vh - 362px); /* Minus Height of Navigation, Footer and Margins */
+  min-height: calc(100vh - 311px); /* Minus Height of Navigation, Footer and Margins */
 }
 
 .container {
   display: block;
   background-color: aliceblue;
   position: relative;
-  margin: 100px auto;
+  margin: 50px auto;
+  padding: 50px;
   /* top: 10%;
   transform: perspective(1px) translateY(-10%); */
 }
+
+/* ********** Reservation ********** */
+
+.reservationCard {
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)) repeat,url("/images/reservationCard2.png") no-repeat center center;
+  background-size: cover;
+}
+
+.shade {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+
+/* ********** Reservation End ********** */
 
 
 
@@ -69,8 +104,8 @@ img {
   width: 100%;
 	height: 200px;
   font-size: 12px;
-  background-color: #3d3d3d;
-  color:#dddddd;
+  background-color: #ffffff;
+  color:#c58d42;
   text-align: center;
 }
 ul, li {
@@ -86,7 +121,7 @@ footer li {
 footer hr {
   margin: 25px 0;
   width: 100%;
-  background-color: #777777;
+  background-color: #c58d42;
 }
 
 .team {
@@ -104,6 +139,51 @@ footer hr {
 
 .team {
   text-align: center;
+}
+
+/* .navbar a:active {
+  color: #694d27 !important;
+}
+
+.navbar a:link {
+  color: #c58d42 !important;
+}
+
+.navbar a:visited {
+  color: #c58d42 !important;
+}
+
+.navbar a:hover {
+  color: #694d27 !important;
+} */
+
+a:link {
+  color: #777777;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #777777;
+  text-decoration: none;
+}
+
+a:active {
+  color: #777777;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+a.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+
+  text-decoration: none;
+  color: initial;
 }
 
 /* Slide Show */
@@ -137,17 +217,267 @@ footer hr {
   right: 5px;
 }
 
+
+
+
+
+
+
+
+
+
+
+/* ********** Admin ********** */
+
+.adminCard {
+  background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)) repeat,url("/images/reservationCard.png") no-repeat center center;
+  background-size: cover;
+}
+
 .eventLayout {
-  background-color: #cccccc;
-  height: 400px;
-  width: 500px;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 550px;
+  width: 100%;
+  padding: 0;
 }
 
 .selectEvent {
-  background-color: #dddddd;
-  height: 400px;
+  /* background-color: #dddddd; */
+  /* height: 300px; */
+  padding: 20px 0;
 }
 
+/* ********** Admin End ********** */
+
+
+/* ************** Menu Items ******************** */
+
 .eventActions {
-  /* height: 400px; */
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 100%;
+  padding-top: 15px;
+}
+
+.eventActions li ul {
+  position: relative;
+  display: none;
+  width: auto;
+  border-left-width: 0;
+  opacity: 1;
+  -webkit-animation: none;
+  animation: none;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  margin-bottom: 15px;
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+
+.actionItemsMain {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #cccccc;
+  /* border-color: #797979; */
+  border-width: 1px;
+  color: #000000;
+}
+
+.actionItemsMain:link {
+  color:  #000000!important;
+  background-color: #cccccc;
+}
+
+.actionItemsMain:visited {
+  color:  #000000!important;
+  background-color: #cccccc;
+}
+
+.actionItemsMain:hover {
+  color:  #996515!important;
+  background-color: #bbbbbb;
+}
+
+.actionItems {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  /* border-color: #797979; */
+  border-width: 1px;
+}
+
+button.actionItems:hover{
+  color: #996515!important;
+}
+
+.actionItems:hover{
+  color: #996515!important;
+}
+
+#addEmployeeContainer {
+  display: none;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+#addEmployeeContainerShow {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+#employee-list {
+  display: none;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+#events-list {
+  display: none;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+#event-list {
+  display: none;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+#eventLayoutItems {
+  /* display: none; */
+  background-color: #cccccc;
+  height: 550px;
+  height: 550px;
+  overflow: scroll;
+}
+
+/* Popover */
+.popover-header {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+/* Popover Body */
+.popover-body {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.list-group-item {
+  display: block;
+  height: 126px;
+  max-width: 100%;
+}
+
+.cursorPointer {
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+ul.adminItemsWrapper li.adminItemsWrapper {
+  display: inline-block;
+  text-align: justify;
+  vertical-align: middle;
+}
+
+.adminItemsActions {
+  margin: 10px;
+}
+
+.adminItemsActionButton {
+  width: 150px;
+}
+
+
+
+/* Event Card */
+.eventCard {
+  display: block;
+  background-color: #ffffff;
+  padding: 20px;
+  height: calc(100% - 80px); /* Minus padding and margins */
+}
+
+li.eventLayoutActions  {
+  margin: 10px;
+  text-align: center;
+}
+
+#saveEvent {
+  width: 100%;
+}
+
+
+.outlineBorder {
+  border-width: 1px;
+  border-style:solid;
+  border-color:#cccccc;
+  padding: 5px;
+}
+
+.submitButton {
+  text-decoration:none;
+  outline: none;
+	box-shadow:inset #ffffff 0px 5px 8px -1px;
+	-moz-box-shadow:inset #ffffff 0px 5px 8px -1px;
+	-webkit-box-shadow:inset #ffffff 0px 5px 8px -1px;
+	background:#bf9b30;
+	background:-o-linear-gradient(90deg, #bf9b30, #996415);
+	background:-moz-linear-gradient( center top, #bf9b30 5%, #996415 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bf9b30), color-stop(1, #996415) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bf9b30', endColorstr='#996415');
+	background:-webkit-linear-gradient(#bf9b30, #996415);
+	background:-ms-linear-gradient(#bf9b30, #996415);
+	background:linear-gradient(#bf9b30, #996415);
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	text-align:center;
+	vertical-align:middle;
+	display:inline-block;
+	color:#ebebeb;
+	border-color:#a67d00!important;
+	border-width:1px;
+  border-style:solid;
+  min-width: 100px;
+}
+
+.submitButton:active {
+	position:relative;
+	top:3px
+}
+
+.submitButton:hover {
+  color:#ffffff;
+	background:#996415;
+	background:-o-linear-gradient(90deg, #996415, #bf9b30);
+	background:-moz-linear-gradient( center top, #996415 5%, #bf9b30 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #996415), color-stop(1, #bf9b30) );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#996415', endColorstr='#bf9b30');
+	background:-webkit-linear-gradient(#996415, #bf9b30);
+	background:-ms-linear-gradient(#996415, #bf9b30);
+	background:linear-gradient(#996415, #bf9b30);
+}
+
+.popover {
+  z-index: 1010; /* A value higher than 1010 that solves the problem */
 }

@@ -12,12 +12,36 @@ module.exports = function(app) {
     });
   });
 
-  // // Get all Events
-  // app.get("/api/events", function(req, res) {
-  //   db.Event.findAll({}).then(function(dbEvents) {
+  // // Get table layout for specific event
+  // app.get("/api/events/", function(req, res) {
+  //   db.Event.findAll({
+  //     tables: req.body.tables
+  //   }, {
+  //     where: {
+  //       id: req.body.id
+  //     }
+  //   }).then(function(dbEvents) {
   //     res.json(dbEvents);
   //   });
   // });
+
+  // Get table layout for specific event
+  app.get("/api/events/:id", function(req, res) {
+    db.Event.findOne({
+      where: { id: req.params.id        
+    }
+    }).then(function(dbPost) {
+      console.log(dbPost);
+      res.json(dbPost);
+    });
+  });
+
+  // Get all Events
+  app.get("/api/events", function(req, res) {
+    db.Event.findAll({}).then(function(dbEvents) {
+      res.json(dbEvents);
+    });
+  });
 
   // Create a new Event
   app.post("/api/events", function(req, res) {
@@ -27,8 +51,11 @@ module.exports = function(app) {
   });
 
   // Update an Event by id
-  app.put("/api/events/", function(req, res) {
-    db.Event.update(req.body, {
+  app.put("/api/events", function(req, res) {
+    console.log(req.body)
+    db.Event.update({
+      tables: req.body.tables
+    }, {
       where: {
         id: req.body.id
       }
@@ -48,6 +75,13 @@ module.exports = function(app) {
     });
   });
 
+  // Create a new Layout
+  app.post("/api/layouts", function(req, res) {
+    db.Layout.create(req.body).then(function(dbLayout) {
+      res.json(dbLayout);
+    });
+  });
+
   // Get all Employees
   app.get("/api/employees", function(req, res) {
     db.Employee.findAll({}).then(function(dbEmployees) {
@@ -64,6 +98,7 @@ module.exports = function(app) {
 
   // Update an Employee by id
   app.put("/api/employees/", function(req, res) {
+    console.log(req.body)
     db.Employee.update(req.body, {
       where: {
         id: req.body.id
@@ -83,4 +118,18 @@ module.exports = function(app) {
       res.json(dbEmployee);
     });
   });
+
+  // Delete a Table for Event
+  app.delete("/:id", function(req, res) {
+    db.Layout.destroy({
+      where: {
+        eventID: req.params.id
+      }
+    }).then(function(dbLayout) {
+      res.json(dbLayout);
+    });
+  });
+
 };
+
+  

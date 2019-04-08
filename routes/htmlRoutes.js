@@ -6,19 +6,19 @@ module.exports = function(app) {
     res.render("index");
   });
 
-  // Grande Room Page
-  app.get("/grande", function(req, res) {
-    res.render("grande");
+  // Brandviw Ballroom Page
+  app.get("/brandview", function(req, res) {
+    res.render("brandview");
   });
 
-  // Venti Room Page
-  app.get("/venti", function(req, res) {
-    res.render("venti");
+  // Glenoaks Ballroom Page
+  app.get("/glenoaks", function(req, res) {
+    res.render("glenoaks");
   });
 
-  // Luxor Room Page
-  app.get("/luxor", function(req, res) {
-    res.render("luxor");
+  // Le Foyer Ballroom Page
+  app.get("/lefoyer", function(req, res) {
+    res.render("lefoyer");
   });
 
   // Reservation Page
@@ -39,9 +39,13 @@ module.exports = function(app) {
   // Load Events page and pass in an Event by id
   app.get("/events/:id", function(req, res) {
     db.Event.findOne({ where: { id: req.params.id } }).then(function(dbEvent) {
-      res.render("event", {
-        // Need single
-        event: dbEvent
+      db.Layout.findAll({ where: { eventID: req.params.id } }).then(function(dbLayouts) {
+        res.render("event", {
+          // Need single
+          event: dbEvent,
+          layouts: dbLayouts
+      });
+      
       });
     });
   });
@@ -75,7 +79,15 @@ module.exports = function(app) {
 
   // Load Admin Page
   app.get("/admin", function(req, res) {
-    res.render("admin");
+    db.Employee.findAll().then(function(dbEmployees) {
+      db.Event.findAll().then(function(dbEvents) {
+        res.render("admin", {
+          // Need Plural
+          employees: dbEmployees,
+          events: dbEvents
+        });
+      });
+    });
   });
 
   // Render 404 page for any unmatched routes
