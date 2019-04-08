@@ -25,16 +25,16 @@ module.exports = function(app) {
   //   });
   // });
 
-  // // Get table layout for specific event
-  // app.get("/api/events/:id", function(req, res) {
-  //   db.Event.findAll({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then(function(dbEvents) {
-  //     res.json(dbEvents);
-  //   });
-  // });
+  // Get table layout for specific event
+  app.get("/api/events/:id", function(req, res) {
+    db.Event.findOne({
+      where: { id: req.params.id        
+    }
+    }).then(function(dbPost) {
+      console.log(dbPost);
+      res.json(dbPost);
+    });
+  });
 
   // Get all Events
   app.get("/api/events", function(req, res) {
