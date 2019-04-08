@@ -154,38 +154,110 @@ $("#searchEvent").click(function(e) {
   }).then(function(data) {
     console.log(data);
     var $events = data.map(function(data) {
-      var $a = $("<a>")
-        .text(data.roomName)
-        .attr("href", "/events/" + data.id)
-        .addClass("reservation")
-        // .attr("href", "#")
-        // .attr("id", data.id)
-        // .attr("data-toggle", "popover")
-        // .attr("data-trigger", "hover")
-        // .attr("data-placement", "right")
-        // .attr("title", data.roomName)
-        // .attr("data-content", "Event info here")
+      var $editButton = $("<a>") 
+        .attr("href", "events/" + event.id)
+        .attr("type", "button")
+        .attr("id", "edit-event")
+        .addClass("btn btn-warning adminItemsActionButton edit")
+        .text("Edit Event")
 
+      var $deleteButton = $("<button>")
+        .addClass("btn btn-danger adminItemsActionButton delete")
+        .text("Delete Event");
+  
+      var $eventActionsDelete = $("<li>")  
+        .addClass("adminItemsActions")
+        .append($deleteButton)
+
+      var $eventActionsEdit = $("<li>")  
+        .addClass("adminItemsActions")
+        .append($editButton)  
+
+      var $eventActionsUL = $("<ul>")  
+        .addClass("adminItemsActions")
+        .append($eventActionsEdit)
+        .append($eventActionsDelete)
+
+      var $eventButtonList = $("<li>")  
+        .addClass("adminItemsWrapper float-right")
+        .append($eventActionsUL)
+              
+      var $div = $("<div>")
+        .attr({
+          src: employee.image,
+          width: 100,
+          height: 100,
+          alt: "Employee"
+        })
+        .attr("data-toggle", "popover")  
+        .attr("data-trigger", "hover")
+        .attr("title", event.roomName)
+        .attr("data-original-title", employee.name)
+        .attr("data-content", "Date: " + event.eventDate + ", Guests: " + event.partySize + <h2>event.eventDate</h2>)
+       
+      var $heading1 = $("<h2>")
+        .  
+
+      var $employeeWrapperLI = $("<li>")  
+        .addClass("adminItemsWrapper cursorPointer")
+        .append($img);
+
+      var $employeeWrapperUL = $("<ul>")  
+        .addClass("adminItemsWrapper")
+        .append($employeeWrapperLI)
+        .append($employeeButtonList)
+      
       var $li = $("<li>")
         .attr({
-          class: "list-group-item list-group-item-action",
-          "data-id": data.id
+          class: "list-group-item",
+          "data-id": employee.id
         })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("x");
-
-      $li.append($button);
+        .append($employeeWrapperUL);
 
       return $li;
     });
 
-    $eventList.empty();
-    $eventList.append($events);
+    $employeeList.empty();
+    $employeeList.append($employees);
   });
 });
+      
+      
+      
+      
+      
+//       var $a = $("<a>")
+//         .text(data.roomName)
+//         .attr("href", "/events/" + data.id)
+//         .addClass("reservation")
+//         // .attr("href", "#")
+//         // .attr("id", data.id)
+//         // .attr("data-toggle", "popover")
+//         // .attr("data-trigger", "hover")
+//         // .attr("data-placement", "right")
+//         // .attr("title", data.roomName)
+//         // .attr("data-content", "Event info here")
+
+//       var $li = $("<li>")
+//         .attr({
+//           class: "list-group-item list-group-item-action",
+//           "data-id": data.id
+//         })
+//         .append($a);
+
+//       var $button = $("<button>")
+//         .addClass("btn btn-danger float-right delete")
+//         .text("x");
+
+//       $li.append($button);
+
+//       return $li;
+//     });
+
+//     $eventList.empty();
+//     $eventList.append($events);
+//   });
+// });
 
 
 // // ************* Get employees ***********
