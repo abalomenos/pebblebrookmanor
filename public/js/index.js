@@ -191,15 +191,15 @@ var refreshEmployees = function() {
         .text("Delete Employee");
   
       var $employeeActionsDelete = $("<li>")  
-        .addClass("adminItemsActions")
+        .addClass("employeeActions")
         .append($deleteButton)
 
       var $employeeActionsEdit = $("<li>")  
-        .addClass("adminItemsActions")
+        .addClass("employeeActions")
         .append($editButton)  
 
       var $employeeActionsUL = $("<ul>")  
-        .addClass("adminItemsActions")
+        .addClass("employeeActions")
         .append($employeeActionsEdit)
         .append($employeeActionsDelete)
 
