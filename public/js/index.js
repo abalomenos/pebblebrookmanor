@@ -24,8 +24,6 @@ var $searchEvent = $("#searchEvent");
 // All Employees Page
 var $employeeList = $("#employee-list");
 
-
-
 // ********** Get References To Page Elements End **********
 
 
@@ -91,7 +89,8 @@ var API = {
   }
 };
 
-// All Events / Search Event
+
+// ***** refreshEvents
 // Gets new event from the db and repopulates the list
 var refreshEvents = function() {
   API.getEvents().then(function(data) {
@@ -121,7 +120,9 @@ var refreshEvents = function() {
   });
 };
 
-// addEvent is called whenever a new event is created
+
+// ***** addEvent
+// called whenever a new event is created
 // Save the new event to the db and refresh the list
 var addEvent = function(event) {
   event.preventDefault();
@@ -151,11 +152,7 @@ var addEvent = function(event) {
     return;
   }
 
-  console.log(event);
-
-  API.saveEvent(event).then(function() {
-    refreshEvents();
-  });
+  API.saveEvent(event);
 
   $eventDate.val("");
   $customerName.val("");
@@ -164,31 +161,33 @@ var addEvent = function(event) {
   $partySize.val("");
 };
 
+
+// ***** deleteEvent
 var deleteEvent = function() {
   var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
+    .closest(".list-group-item")
+    .attr("data-id")
 
   API.deleteEvent(idToDelete).then(function() {
-    refreshEvents();
+    $('li[data-id="' + idToDelete +'"]').remove();
   });
 };
 
+
+// ***** refreshEmployees
 // Gets new employee from the db and repopulates the list
 var refreshEmployees = function() {
   API.getEmployees().then(function(data) {
     var $employees = data.map(function(employee) {
       
-      var $a = $("<a>")  
-        .attr("href", "employees/" + employee.id);
-
-      var $editButton = $("<button>")  
-        .addClass("btn btn-warning employeeActionButton edit")
+      var $editButton = $("<a>") 
+        .attr("href", "employees/" + employee.id)
+        .attr("type", "button")
+        .addClass("btn btn-warning adminItemsActionButton edit")
         .text("Edit Employee")
-        .append($a);
 
       var $deleteButton = $("<button>")
-        .addClass("btn btn-danger employeeActionButton delete")
+        .addClass("btn btn-danger adminItemsActionButton delete")
         .text("Delete Employee");
   
       var $employeeActionsDelete = $("<li>")  
@@ -217,9 +216,9 @@ var refreshEmployees = function() {
         })
         .attr("data-toggle", "popover")  
         .attr("data-trigger", "hover")
-        .attr("title", employee.name)
+        .attr("title", "")
+        .attr("data-original-title", employee.name)
         .attr("data-content", "Wage: $" + employee.wage + "/hr")
-        // .attr("href", "/employee/" + employee.id);
 
       var $employeeWrapperLI = $("<li>")  
         .addClass("adminItemsWrapper")
@@ -245,7 +244,9 @@ var refreshEmployees = function() {
   });
 };
 
-// addEmployee is called whenever we submit a new employee
+
+// ***** addEmployee ***** 
+// Called whenever we submit a new employee
 // Save the new employee to the db and refresh the list
 var addEmployee = function(event) {
   event.preventDefault();
@@ -261,8 +262,6 @@ var addEmployee = function(event) {
     return;
   }
 
-  console.log("Saving new employee " + employee);
-
   API.saveEmployee(employee).then(function() {
     refreshEmployees();
   });
@@ -272,19 +271,20 @@ var addEmployee = function(event) {
   $employeeImage.val("");
 };
 
-// removeEmployee is called when an employee's delete button is clicked
+
+// ***** deleteEmployee *****
+// Called when an employee's delete button is clicked
 // Remove the employee from the db and refresh the list
 var deleteEmployee = function() {
   var idToDelete = $(this)
     .closest(".list-group-item")
     .attr("data-id")
-    console.log(idToDelete)
 
   API.deleteEmployee(idToDelete).then(function() {
-    $("data-id").remove(idToDelete);
-    refreshEmployees();
+    $('li[data-id="' + idToDelete +'"]').remove();
   });
 };
+
 
 // Add event listeners to the submit and delete buttons
 $submitEvent.on("click", addEvent);
