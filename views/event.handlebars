@@ -21,7 +21,9 @@
       <div class="col-md-8 eventLayout">
         {{!-- Event Tables Layout --}}
         <div id="eventLayoutItems">
-          {{event.tables}}
+          {{#each layouts}}
+            <div id='{{this.tableID}}' class='draggable' style='transform: translate(' + {{this.xCoords}} + 'px, ' + {{this.yCoords}} + 'px);' data-x='{{this.xCoords}}' data-y='{{this.yCoords}}'><button id='deleteTable-' + {{this.tableID}} class='deleteTable'>X</button></div>
+          {{/each}}
         </div>
       </div>
       <div class="col-md-4">
