@@ -81,7 +81,7 @@ module.exports = function(app) {
       res.json(dbLayout);
     });
   });
-  
+
   // Get all Employees
   app.get("/api/employees", function(req, res) {
     db.Employee.findAll({}).then(function(dbEmployees) {
