@@ -198,9 +198,6 @@ $("#searchEvent").click(function(e) {
         .attr("title", event.roomName)
         .attr("data-original-title", employee.name)
         .attr("data-content", "Date: " + event.eventDate + ", Guests: " + event.partySize + <h2>event.eventDate</h2>)
-       
-      var $heading1 = $("<h2>")
-        .  
 
       var $employeeWrapperLI = $("<li>")  
         .addClass("adminItemsWrapper cursorPointer")
