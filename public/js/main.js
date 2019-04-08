@@ -127,17 +127,19 @@ $("#saveEvent").click(function() {
     // });
 
     // Need to save to DataBase
+    $.ajax({
+      url: "/api/layouts/",
+      type: "POST",
+      data: {
+        eventID: eventID,
+        tableID: tableID,
+        xCoords: xCoords,
+        yCoords: yCoords
+      }
+    });
   });
   // console.log(tablesArray);
-  //     $.ajax({
-  //       url: "/api/events/",
-  //       type: "PUT",
-  //       data: {
-  //         tables: JSON.stringify(tablesArray),
-  //         id: window.location.pathname.split("/")[2]
-  //       }
-  //     }).then(function() {
-  //     })
+      
 });
 
 // ************** Event Tables End **************
@@ -197,7 +199,7 @@ $("#searchEvent").click(function(e) {
         .attr("data-trigger", "hover")
         .attr("title", event.roomName)
         .attr("data-original-title", employee.name)
-        .attr("data-content", "Date: " + event.eventDate + ", Guests: " + event.partySize + <h2>event.eventDate</h2>)
+        // .attr("data-content", "Date: " + event.eventDate + ", Guests: " + event.partySize + <h2>event.eventDate</h2>)
 
       var $employeeWrapperLI = $("<li>")  
         .addClass("adminItemsWrapper cursorPointer")

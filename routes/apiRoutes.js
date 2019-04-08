@@ -75,6 +75,13 @@ module.exports = function(app) {
     });
   });
 
+  // Create a new Layout
+  app.post("/api/layouts", function(req, res) {
+    db.Layout.create(req.body).then(function(dbLayout) {
+      res.json(dbLayout);
+    });
+  });
+  
   // Get all Employees
   app.get("/api/employees", function(req, res) {
     db.Employee.findAll({}).then(function(dbEmployees) {

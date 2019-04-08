@@ -21,14 +21,9 @@
       <div class="col-md-8 eventLayout">
         {{!-- Event Tables Layout --}}
         <div id="eventLayoutItems">
-          {{event.tables}}
-            <script type="text/javascript">
-              for (var i=0;i<5;i++) {
-                $("#eventLayoutItems").append(
-                  '<div id="drag-' + i + '" class="draggable" style="transform: translate(114px, 95px);" data-x="114" data-y="95">'+i+'<button id="deleteTable-'+i+'" class="deleteTable">X</button></div>'
-                )
-              }
-            </script>
+          {{#each layouts}}
+            <div id='{{this.tableID}}' class='draggable' style='transform: translate(' + {{this.xCoords}} + 'px, ' + {{this.yCoords}} + 'px);' data-x='{{this.xCoords}}' data-y='{{this.yCoords}}'><button id='deleteTable-' + {{this.tableID}} class='deleteTable'>X</button></div>
+          {{/each}}
         </div>
       </div>
       <div class="col-md-4">

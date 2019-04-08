@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
       "Layout",
       {
         eventID: DataTypes.INTEGER,
-        tableID: DataTypes.INTEGER,
+        tableID: DataTypes.STRING,
         xCoords: DataTypes.INTEGER,
         yCoords: DataTypes.INTEGER
       }
