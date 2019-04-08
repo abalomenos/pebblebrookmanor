@@ -104,8 +104,8 @@ $(document).on("click", ".deleteTable", function() {
 // ************ Save Event *****************
 
 $("#saveEvent").click(function() {
-  var tablesArray = [];
-
+  // var tablesArray = [];
+  var eventID = window.location.pathname.split("/")[2];
   $(".draggable").each(function() {
     tableID = this.id;
     xCoords = $("#" + this.id).attr("data-x");
@@ -116,24 +116,28 @@ $("#saveEvent").click(function() {
     if (yCoords == null) {
       yCoords = 0;
     }
-    tablesArray.push({
-      tableID: tableID,
-      xCoords: xCoords,
-      yCoords: yCoords
-    });
+    console.log("EventID " + eventID);
+    console.log("TableID " + tableID);
+    console.log("x " + xCoords);
+    console.log("y " + yCoords);
+    // tablesArray.push({
+    //   tableID: tableID,
+    //   xCoords: xCoords,
+    //   yCoords: yCoords
+    // });
 
     // Need to save to DataBase
   });
-  console.log(tablesArray);
-      $.ajax({
-        url: "/api/events/",
-        type: "PUT",
-        data: {
-          tables: JSON.stringify(tablesArray),
-          id: window.location.pathname.split("/")[2]
-        }
-      }).then(function() {
-      })
+  // console.log(tablesArray);
+  //     $.ajax({
+  //       url: "/api/events/",
+  //       type: "PUT",
+  //       data: {
+  //         tables: JSON.stringify(tablesArray),
+  //         id: window.location.pathname.split("/")[2]
+  //       }
+  //     }).then(function() {
+  //     })
 });
 
 // ************** Event Tables End **************
