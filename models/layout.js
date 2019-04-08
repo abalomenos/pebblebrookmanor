@@ -2,12 +2,35 @@ module.exports = function(sequelize, DataTypes) {
     var Layout = sequelize.define(
       "Layout",
       {
-        eventID: DataTypes.INTEGER,
-        tableID: DataTypes.STRING,
-        xCoords: DataTypes.INTEGER,
-        yCoords: DataTypes.INTEGER
-      }
-    );
+        eventRef: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          validate: {
+            len: [1]
+          }
+        },  
+        tableID: {
+          type: DataTypes.STRING,
+          allowNull: false,
+          validate: {
+            len: [1]
+          }
+        },  
+        xCoords: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          validate: {
+            len: [1]
+          }
+        },  
+        yCoords: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          validate: {
+            len: [1]
+          }
+        }  
+      });
 
     Layout.associate = function(models) {
       Layout.belongsTo(models.Event, {

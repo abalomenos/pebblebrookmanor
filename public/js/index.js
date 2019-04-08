@@ -24,6 +24,8 @@ var $searchEvent = $("#searchEvent");
 // All Employees Page
 var $employeeList = $("#employee-list");
 
+// Update Employee
+var $updateEmployee = $("#update-employee");
 // ********** Get References To Page Elements End **********
 
 
@@ -81,10 +83,11 @@ var API = {
       type: "DELETE"
     });
   },
-  updateEmployee: function() {
+  updateEmployee: function(data) {
     return $.ajax({
-      url: "api/employees/",
-      type: "PUT"
+      url: "/api/employees/",
+      type: "PUT",
+      data: data
     });
   }
 };
@@ -280,7 +283,7 @@ var updateEmployee = function(event) {
     image: $employeeImage.val().trim()
   };
 API.updateEmployee(employee).then(function() {});
-$employeeName.val("");
+  $employeeName.val("");
   $employeeWage.val("");
   $employeeImage.val("");
 };
@@ -303,7 +306,7 @@ $submitEvent.on("click", addEvent);
 $submitEmployee.on("click", addEmployee);
 $eventList.on("click", ".delete", deleteEvent);
 $employeeList.on("click", ".delete", deleteEmployee);
-// $employeeList.on("click", ".update", updateEmployee);
+$updateEmployee.on("click", updateEmployee);
 
 $searchEvent.on("click", refreshEvents);
 
