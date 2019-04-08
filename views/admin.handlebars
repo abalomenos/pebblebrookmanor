@@ -44,8 +44,8 @@
             {{#each employees}}
             <li data-id="{{this.id}}" class="list-group-item">
               <ul class="adminItemsWrapper">
-                <li class="adminItemsWrapper">
-                    <img src='{{this.image}}'  width="100" height="100" alt="Employee" data-toggle="popover" data-trigger="hover" title={{this.name}} data-content='Wage: ${{this.wage}}/hr'>
+                <li class="adminItemsWrapper cursorPointer">
+                    <img src='{{this.image}}'  width="100" height="100" alt="Employee" data-toggle="popover" data-trigger="hover" title='{{this.name}}' data-content='Wage: ${{this.wage}}/hr'>
                 </li>
                 <li class="adminItemsWrapper float-right">
                     <ul class="adminItemsActions">
@@ -68,8 +68,8 @@
           {{#each events}}
             <li data-id="{{this.id}}" class="list-group-item">
               <ul class="adminItemsWrapper">
-                <li class="adminItemsWrapper">
-                  <div data-toggle="popover" data-trigger="hover" title={{this.roomName}} data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'><h2>{{this.eventDate}}</h2><h5>{{this.customerName}}</h5></div>
+                <li class="adminItemsWrapper cursorPointer">
+                  <div data-toggle="popover" data-trigger="hover" title='{{this.roomName}}' data-content='Date: {{this.eventDate}}, Guests: {{this.partySize}}'><h2>{{this.eventDate}}</h2><h5>{{this.customerName}}</h5></div>
                 </li>
                 <li class="adminItemsWrapper float-right">
                   <ul class="adminItemsActions">
