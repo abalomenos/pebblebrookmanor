@@ -249,16 +249,23 @@ var addEmployee = function(event) {
 var updateEmployee = function(event) {
   event.preventDefault();
 
+  var id = window.location.pathname.split("/")[2];
+  console.log(id)
   var employee = {
+    id: id,
     name: $employeeName.val().trim(),
     wage: $employeeWage.val().trim(),
     image: $employeeImage.val().trim()
   };
-API.updateEmployee(employee).then(function() {});
-  $employeeName.val("");
-  $employeeWage.val("");
-  $employeeImage.val("");
-};
+
+  API.updateEmployee(employee).then(function(){
+    window.location.reload();
+
+  });
+    $employeeName.val("");
+    $employeeWage.val("");
+    $employeeImage.val("");
+  };
 // ***** deleteEmployee *****
 // Called when an employee's delete button is clicked
 // Remove the employee from the db and refresh the list
