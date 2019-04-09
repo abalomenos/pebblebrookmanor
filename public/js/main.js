@@ -131,20 +131,17 @@ $("#saveEvent").click(function() {
     if (yCoords == null) {
       yCoords = 0;
     }
-    console.log("eventRef " + eventRef);
-    console.log("TableID " + tableID);
-    console.log("x " + xCoords);
-    console.log("y " + yCoords);
-    // tablesArray.push({
-    //   tableID: tableID,
-    //   xCoords: xCoords,
-    //   yCoords: yCoords
-    // });
+    // console.log("eventRef " + eventRef);
+    // console.log("TableID " + tableID);
+    // console.log("x " + xCoords);
+    // console.log("y " + yCoords);
 
-    // Need to save to DataBase
+    // Save to Database
+    // Need async: false for ajax to be synchronous in order to save event tables in order for interact.js to work properly
     $.ajax({
       url: "/api/layouts/",
       type: "POST",
+      async: false,
       data: {
         eventRef: eventRef,
         tableID: tableID,
@@ -239,76 +236,6 @@ $("#searchEvent").click(function(e) {
     $eventList.append($events);
   });
 });
-      
-      
-      
-      
-      
-//       var $a = $("<a>")
-//         .text(data.roomName)
-//         .attr("href", "/events/" + data.id)
-//         .addClass("reservation")
-//         // .attr("href", "#")
-//         // .attr("id", data.id)
-//         // .attr("data-toggle", "popover")
-//         // .attr("data-trigger", "hover")
-//         // .attr("data-placement", "right")
-//         // .attr("title", data.roomName)
-//         // .attr("data-content", "Event info here")
-
-//       var $li = $("<li>")
-//         .attr({
-//           class: "list-group-item list-group-item-action",
-//           "data-id": data.id
-//         })
-//         .append($a);
-
-//       var $button = $("<button>")
-//         .addClass("btn btn-danger float-right delete")
-//         .text("x");
-
-//       $li.append($button);
-
-//       return $li;
-//     });
-
-//     $eventList.empty();
-//     $eventList.append($events);
-//   });
-// });
-
-
-// // ************* Get employees ***********
-// $(".reservation").on("click", function() {
-//   $.ajax({
-//       url: "api/employees",
-//       type: "GET"
-//     }).then(function(data) {
-//       console.log(data)
-//       var $employees = data.map(function(data) {
-//         var $a = $("<a>")
-//           .text(data.employeeName)
-//           .attr("href", "/employee/" + data.id)
-  
-//         var $li = $("<li>")
-//           .attr({
-//             class: "list-group-item list-group-item-action",
-//             "data-id": data.id
-//           })
-//           .append($a);
-  
-//         var $button = $("<button>")
-//           .addClass("btn btn-danger float-right delete")
-//           .text("x");
-  
-//         $li.append($button);
-  
-//         return $li;
-//       });
-  
-//       $employeeList.append($employees);
-//     });
-//   }); 
 
 
 // ************* GET LAYOUT **************
