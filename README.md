@@ -1,5 +1,5 @@
 # Pebblebrook Manor
-POebblebrook Manor is a venue management Web app that uses Node.js, Exrpess.js, Handlebars and MySQL. Users are able to reserve a ballroom of their choice to reserve. Management is able to confirm the reservation and adjust in real time the venue layout for any specific reservation. For convinience, there is no login so both the customer view and management view are accessible for testing purposes.
+Pebblebrook Manor is a venue management Web app that uses Node.js, Exrpess.js, Handlebars, and MySQL. Users are able to reserve a ballroom of their choice to reserve. Management is able to confirm the reservation and adjust in real time the venue layout for any specific reservation. For convenience, there is no login so both the customer view and management view are accessible for testing purposes.
 
 ## Technologies
 
