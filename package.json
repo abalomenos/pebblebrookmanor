@@ -13,7 +13,7 @@
   "dependencies": {
     "dotenv": "^7.0.0",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^5.3.1",
     "interactjs": "^1.4.0-rc.5",
     "mysql2": "^1.6.4",
     "sequelize": "^5.8.6"
